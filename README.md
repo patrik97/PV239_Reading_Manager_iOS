@@ -11,6 +11,7 @@ Aplikace bude obsahovat 4 podstránky. Navigace mezi podstránkami bude zabezpe�
 4. **Statistics** - grafy, vizualizace, počet přečtených knih v čase, rozdělení podle žánru, autora apod.
 
 ## Datový model
+![Datový model](/images/dataModel.jpg?raw=true "Optional Title")
 
 ## Wireframes
 [Wireframes](http://pv239.lukasmatta.com/)
@@ -20,6 +21,6 @@ Aplikace bude obsahovat 4 podstránky. Navigace mezi podstránkami bude zabezpe�
 * WishListController - Patrik
 * StatisticsController - Lukáš
 * BookDetailController - Lukáš
-  - + každý má podřízené controllery k tomu svému (např. controller na vytváření nové knihy má Patrik)
+  - každý má podřízené controllery k tomu svému (např. controller na vytváření nové knihy má Patrik)
 * Book, BookNote, BookState - Patrik
 * User - Lukáš
