@@ -44,6 +44,9 @@ class Book {
         return calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year], from: currentDate)
     }
     
+    /*
+     Add new note into notes
+     */
     func addNote(note: String) {
         notes.append(BookNote(note: note, added: Book.getCurrentDate()))
     }
