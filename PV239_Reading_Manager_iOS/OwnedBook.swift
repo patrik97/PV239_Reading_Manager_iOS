@@ -9,12 +9,15 @@
 import Foundation
 
 class OwnedBook: Book {
-    private(set) var state: BookState
+    private(set) var state: BookState = BookState.Unread
     private(set) var added: DateComponents
     
-    override init() {
-        state = BookState.Unread
-        added = DateComponents()
-        super.init()
+    override init(id: Int, author: String, title: String, genre: String) {
+        added = Book.getCurrentDate()
+        super.init(id: id, author: author, title: title, genre: genre)
+    }
+    
+    func setState(state: BookState) {
+        self.state = state
     }
 }

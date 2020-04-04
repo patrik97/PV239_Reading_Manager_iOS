@@ -11,8 +11,8 @@ import Foundation
 class WishedBook: Book {
     private(set) var added: DateComponents
     
-    override init() {
-        added = DateComponents()
-        super.init()
+    override init(id: Int, author: String, title: String, genre: String) {
+        added = Book.getCurrentDate()
+        super.init(id: id, author: author, title: title, genre: genre)
     }
 }

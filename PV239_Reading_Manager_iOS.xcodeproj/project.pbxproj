@@ -21,6 +21,7 @@
 		B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B52438D01F000B483C /* WishedBooksController.swift */; };
 		B897F9B824390258000B483C /* BookDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B724390258000B483C /* BookDetailController.swift */; };
 		B897F9BA24390482000B483C /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B924390482000B483C /* AddBookController.swift */; };
+		B897F9BC24390A3F000B483C /* BookNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9BB24390A3F000B483C /* BookNote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		B897F9B52438D01F000B483C /* WishedBooksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishedBooksController.swift; sourceTree = "<group>"; };
 		B897F9B724390258000B483C /* BookDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailController.swift; sourceTree = "<group>"; };
 		B897F9B924390482000B483C /* AddBookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
+		B897F9BB24390A3F000B483C /* BookNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				B897F9B52438D01F000B483C /* WishedBooksController.swift */,
 				B897F9B724390258000B483C /* BookDetailController.swift */,
 				B897F9B924390482000B483C /* AddBookController.swift */,
+				B897F9BB24390A3F000B483C /* BookNote.swift */,
 			);
 			path = PV239_Reading_Manager_iOS;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */,
 				B897F9BA24390482000B483C /* AddBookController.swift in Sources */,
 				B897F9AE2438B5FC000B483C /* WishedBook.swift in Sources */,
+				B897F9BC24390A3F000B483C /* BookNote.swift in Sources */,
 				B897F9982438B4AB000B483C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
