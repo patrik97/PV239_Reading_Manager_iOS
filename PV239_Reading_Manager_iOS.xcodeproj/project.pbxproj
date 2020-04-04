@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9952438B4AB000B483C /* AppDelegate.swift */; };
 		B897F9982438B4AB000B483C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9972438B4AB000B483C /* SceneDelegate.swift */; };
-		B897F99A2438B4AB000B483C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9992438B4AB000B483C /* ViewController.swift */; };
 		B897F99D2438B4AB000B483C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B897F99B2438B4AB000B483C /* Main.storyboard */; };
 		B897F99F2438B4B1000B483C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B897F99E2438B4B1000B483C /* Assets.xcassets */; };
 		B897F9A22438B4B1000B483C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B897F9A02438B4B1000B483C /* LaunchScreen.storyboard */; };
@@ -18,13 +17,14 @@
 		B897F9AE2438B5FC000B483C /* WishedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9AD2438B5FC000B483C /* WishedBook.swift */; };
 		B897F9B02438B60E000B483C /* BookState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9AF2438B60E000B483C /* BookState.swift */; };
 		B897F9B22438B624000B483C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B12438B624000B483C /* User.swift */; };
+		B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B32438CC01000B483C /* MyLibraryController.swift */; };
+		B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B52438D01F000B483C /* WishedBooksController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B897F9922438B4AB000B483C /* PV239_Reading_Manager_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PV239_Reading_Manager_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B897F9952438B4AB000B483C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B897F9972438B4AB000B483C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B897F9992438B4AB000B483C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B897F99C2438B4AB000B483C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B897F99E2438B4B1000B483C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B897F9A12438B4B1000B483C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +34,8 @@
 		B897F9AD2438B5FC000B483C /* WishedBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishedBook.swift; sourceTree = "<group>"; };
 		B897F9AF2438B60E000B483C /* BookState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookState.swift; sourceTree = "<group>"; };
 		B897F9B12438B624000B483C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B897F9B32438CC01000B483C /* MyLibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryController.swift; sourceTree = "<group>"; };
+		B897F9B52438D01F000B483C /* WishedBooksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishedBooksController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,6 @@
 			children = (
 				B897F9952438B4AB000B483C /* AppDelegate.swift */,
 				B897F9972438B4AB000B483C /* SceneDelegate.swift */,
-				B897F9992438B4AB000B483C /* ViewController.swift */,
 				B897F99B2438B4AB000B483C /* Main.storyboard */,
 				B897F99E2438B4B1000B483C /* Assets.xcassets */,
 				B897F9A02438B4B1000B483C /* LaunchScreen.storyboard */,
@@ -78,6 +79,8 @@
 				B897F9AD2438B5FC000B483C /* WishedBook.swift */,
 				B897F9AF2438B60E000B483C /* BookState.swift */,
 				B897F9B12438B624000B483C /* User.swift */,
+				B897F9B32438CC01000B483C /* MyLibraryController.swift */,
+				B897F9B52438D01F000B483C /* WishedBooksController.swift */,
 			);
 			path = PV239_Reading_Manager_iOS;
 			sourceTree = "<group>";
@@ -155,8 +158,9 @@
 			files = (
 				B897F9AA2438B5D0000B483C /* Book.swift in Sources */,
 				B897F9B02438B60E000B483C /* BookState.swift in Sources */,
-				B897F99A2438B4AB000B483C /* ViewController.swift in Sources */,
+				B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */,
 				B897F9AC2438B5EB000B483C /* OwnedBook.swift in Sources */,
+				B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */,
 				B897F9B22438B624000B483C /* User.swift in Sources */,
 				B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */,
 				B897F9AE2438B5FC000B483C /* WishedBook.swift in Sources */,
