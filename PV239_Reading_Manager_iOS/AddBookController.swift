@@ -10,4 +10,7 @@ import UIKit
 
 class AddBookController: UIViewController {
     
+    @IBAction func cancelButton(_ sender: UIButton) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 }
