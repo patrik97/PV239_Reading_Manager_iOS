@@ -9,5 +9,11 @@
 import UIKit
 
 class BookDetailController: UIViewController {
+    @IBOutlet weak var bookTitle: UILabel!
+    var book: Book?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bookTitle.text = book?.title
+    }
 }
