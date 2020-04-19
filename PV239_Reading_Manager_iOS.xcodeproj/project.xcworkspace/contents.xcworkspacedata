@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PV239_Reading_Manager_iOS.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

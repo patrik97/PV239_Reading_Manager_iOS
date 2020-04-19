@@ -10,5 +10,5 @@ import Foundation
 
 struct BookNote {
     var note: String
-    var added: DateComponents
+    var added: Date
 }

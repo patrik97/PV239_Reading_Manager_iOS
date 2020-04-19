@@ -9,7 +9,8 @@
 import Foundation
 
 enum BookState {
-    case Unread
-    case Read
-    case Reding
+    case unread
+    case read
+    case reding
+    case notOwned
 }

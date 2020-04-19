@@ -3,18 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B831FBA2244CE515007DB278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B831FBA1244CE515007DB278 /* Alamofire */; };
 		B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9952438B4AB000B483C /* AppDelegate.swift */; };
 		B897F9982438B4AB000B483C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9972438B4AB000B483C /* SceneDelegate.swift */; };
 		B897F99D2438B4AB000B483C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B897F99B2438B4AB000B483C /* Main.storyboard */; };
 		B897F99F2438B4B1000B483C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B897F99E2438B4B1000B483C /* Assets.xcassets */; };
 		B897F9A22438B4B1000B483C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B897F9A02438B4B1000B483C /* LaunchScreen.storyboard */; };
 		B897F9AA2438B5D0000B483C /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9A92438B5D0000B483C /* Book.swift */; };
-		B897F9AC2438B5EB000B483C /* OwnedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9AB2438B5EB000B483C /* OwnedBook.swift */; };
-		B897F9AE2438B5FC000B483C /* WishedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9AD2438B5FC000B483C /* WishedBook.swift */; };
 		B897F9B02438B60E000B483C /* BookState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9AF2438B60E000B483C /* BookState.swift */; };
 		B897F9B22438B624000B483C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B12438B624000B483C /* User.swift */; };
 		B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B32438CC01000B483C /* MyLibraryController.swift */; };
@@ -33,8 +32,6 @@
 		B897F9A12438B4B1000B483C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B897F9A32438B4B1000B483C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B897F9A92438B5D0000B483C /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		B897F9AB2438B5EB000B483C /* OwnedBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedBook.swift; sourceTree = "<group>"; };
-		B897F9AD2438B5FC000B483C /* WishedBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishedBook.swift; sourceTree = "<group>"; };
 		B897F9AF2438B60E000B483C /* BookState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookState.swift; sourceTree = "<group>"; };
 		B897F9B12438B624000B483C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B897F9B32438CC01000B483C /* MyLibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryController.swift; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B831FBA2244CE515007DB278 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,8 +79,6 @@
 				B897F9A02438B4B1000B483C /* LaunchScreen.storyboard */,
 				B897F9A32438B4B1000B483C /* Info.plist */,
 				B897F9A92438B5D0000B483C /* Book.swift */,
-				B897F9AB2438B5EB000B483C /* OwnedBook.swift */,
-				B897F9AD2438B5FC000B483C /* WishedBook.swift */,
 				B897F9AF2438B60E000B483C /* BookState.swift */,
 				B897F9B12438B624000B483C /* User.swift */,
 				B897F9B32438CC01000B483C /* MyLibraryController.swift */,
@@ -110,6 +106,9 @@
 			dependencies = (
 			);
 			name = PV239_Reading_Manager_iOS;
+			packageProductDependencies = (
+				B831FBA1244CE515007DB278 /* Alamofire */,
+			);
 			productName = PV239_Reading_Manager_iOS;
 			productReference = B897F9922438B4AB000B483C /* PV239_Reading_Manager_iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -138,6 +137,9 @@
 				Base,
 			);
 			mainGroup = B897F9892438B4AB000B483C;
+			packageReferences = (
+				B831FBA0244CE515007DB278 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = B897F9932438B4AB000B483C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -169,12 +171,10 @@
 				B897F9B824390258000B483C /* BookDetailController.swift in Sources */,
 				B897F9B02438B60E000B483C /* BookState.swift in Sources */,
 				B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */,
-				B897F9AC2438B5EB000B483C /* OwnedBook.swift in Sources */,
 				B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */,
 				B897F9B22438B624000B483C /* User.swift in Sources */,
 				B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */,
 				B897F9BA24390482000B483C /* AddBookController.swift in Sources */,
-				B897F9AE2438B5FC000B483C /* WishedBook.swift in Sources */,
 				B897F9BC24390A3F000B483C /* BookNote.swift in Sources */,
 				B897F9982438B4AB000B483C /* SceneDelegate.swift in Sources */,
 			);
@@ -372,6 +372,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B831FBA0244CE515007DB278 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B831FBA1244CE515007DB278 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B831FBA0244CE515007DB278 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B897F98A2438B4AB000B483C /* Project object */;
 }
