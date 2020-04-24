@@ -12,15 +12,13 @@ class Book {
     let id: Int
     let author: String
     let title: String
-    let genre: String
     var notes = [BookNote]()
     var state = BookState.notOwned
     
-    init(id: Int, author: String, title: String, genre: String) {
+    init(id: Int, author: String, title: String) {
         self.id = id;
         self.author = author;
         self.title = title;
-        self.genre = genre;
     }
 
     /*
