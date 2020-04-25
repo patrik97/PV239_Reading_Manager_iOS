@@ -19,7 +19,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     var bookId = Int()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTable: UITableView!
-    
+    weak var myLibraryBookDelegate: MyLibraryBookDelegate?
     
     
     override func viewDidLoad() {
@@ -67,6 +67,21 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let book = books[indexPath.row]
+        let alert = UIAlertController(title: "Do you wish to add this book to yours?", message: book.author + "\n" + book.title, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes to Library", style: .default, handler: { action in self.addToMyLibrary(indexPath: indexPath) }))
+        alert.addAction(UIAlertAction(title: "Yes to Wished books", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    private func addToMyLibrary(indexPath: IndexPath) {
+        myLibraryBookDelegate?.addBook(book: books[indexPath.row])
+        books.remove(at: indexPath.row)
+        self.booksTable.reloadData()
     }
 }
 

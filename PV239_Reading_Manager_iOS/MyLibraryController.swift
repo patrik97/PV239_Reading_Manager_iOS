@@ -8,6 +8,21 @@
 
 import UIKit
 
+
+protocol MyLibraryBookDelegate: class {
+    func addBook(book: Book)
+}
+
 class MyLibraryController: UIViewController {
+    var myBooks: [Book] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+extension MyLibraryController: MyLibraryBookDelegate {
+    func addBook(book: Book) {
+        myBooks.append(book)
+    }
 }
