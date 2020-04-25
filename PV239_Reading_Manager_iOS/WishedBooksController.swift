@@ -8,6 +8,20 @@
 
 import UIKit
 
+protocol WishedBooksDelegate: class {
+    func addBook(book: Book)
+}
+
 class WishedBooksController: UIViewController {
+    var wishedBooks: [Book] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+extension WishedBooksController: WishedBooksDelegate {
+    func addBook(book: Book) {
+        wishedBooks.append(book)
+    }
 }
