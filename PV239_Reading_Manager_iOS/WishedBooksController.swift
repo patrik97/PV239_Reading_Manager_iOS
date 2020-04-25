@@ -14,6 +14,7 @@ protocol WishedBooksDelegate: class {
 
 class WishedBooksController: UIViewController {
     var wishedBooks: [Book] = []
+    @IBOutlet weak var wishedBooksCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
