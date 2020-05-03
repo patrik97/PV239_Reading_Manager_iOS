@@ -20,6 +20,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTable: UITableView!
     weak var myLibraryBookDelegate: MyLibraryBookDelegate?
+    weak var wishedBookDelegate: WishedBookDelegate?
     
     
     override func viewDidLoad() {
@@ -85,7 +86,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     private func addToWishedBooks(indexPath: IndexPath) {
-        //wishedBooksDelegate?.addBook(book: books[indexPath.row])
+        wishedBookDelegate?.addBook(book: books[indexPath.row])
         books.remove(at: indexPath.row)
         self.booksTable.reloadData()
     }

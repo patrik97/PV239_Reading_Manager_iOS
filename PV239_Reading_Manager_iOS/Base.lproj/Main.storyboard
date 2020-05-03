@@ -71,7 +71,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" textLabel="SY5-RD-VEf" detailTextLabel="SqJ-5O-Fni" style="IBUITableViewCellStyleSubtitle" id="COu-fZ-Xxw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="WishedBookCell" textLabel="SY5-RD-VEf" detailTextLabel="SqJ-5O-Fni" style="IBUITableViewCellStyleSubtitle" id="COu-fZ-Xxw">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="COu-fZ-Xxw" id="a3s-H0-lD2">
@@ -95,9 +95,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Dgf-7b-ipa" kind="popoverPresentation" trigger="accessoryAction" popoverAnchorView="COu-fZ-Xxw" id="SYP-9M-CCM">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
+                                            <segue destination="Dgf-7b-ipa" kind="presentation" trigger="accessoryAction" id="SYP-9M-CCM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -115,12 +113,15 @@
                     <navigationItem key="navigationItem" title="Wishlist" id="tdq-N1-SGB">
                         <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="m7i-a4-Zx7">
                             <connections>
-                                <segue destination="sSO-Gv-AJa" kind="popoverPresentation" popoverAnchorBarButtonItem="m7i-a4-Zx7" id="Yv5-DE-KJm">
+                                <segue destination="sSO-Gv-AJa" kind="popoverPresentation" identifier="addWishedBookSegue" popoverAnchorBarButtonItem="m7i-a4-Zx7" id="Yv5-DE-KJm">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="wishlistTableView" destination="zyW-EG-ssd" id="hQs-Cs-BV0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ylj-ow-dfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,6 +180,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Dgf-7b-ipa" kind="presentation" id="5I7-Eh-raJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -351,7 +355,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iyQ-iG-M1I"/>
+        <segue reference="Yv5-DE-KJm"/>
+        <segue reference="SYP-9M-CCM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>

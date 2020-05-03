@@ -8,21 +8,51 @@
 
 import UIKit
 
-protocol WishedBooksDelegate: class {
+protocol WishedBookDelegate: class {
     func addBook(book: Book)
 }
 
-class WishedBooksController: UIViewController {
+class WishedBooksController: UIViewController, WishedBookDelegate {
     var wishedBooks: [Book] = []
-    @IBOutlet weak var wishedBooksCollection: UICollectionView!
+    @IBOutlet weak var wishlistTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        wishlistTableView.delegate = self
+        wishlistTableView.dataSource = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addWishedBookSegue", let addMyBookController = segue.destination as? AddBookController {
+            addMyBookController.wishedBookDelegate = self
+        }
+    }
+    
+    func addBook(book: Book) {
+        wishedBooks.append(book)
+        wishlistTableView.reloadData()
     }
 }
 
-extension WishedBooksController: WishedBooksDelegate {
-    func addBook(book: Book) {
-        wishedBooks.append(book)
+extension WishedBooksController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return wishedBooks.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = wishlistTableView.dequeueReusableCell(withIdentifier: "WishedBookCell", for: indexPath) as UITableViewCell
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
+        let book = wishedBooks[indexPath.row]
+        cell.textLabel?.text = book.title
+        cell.detailTextLabel?.text = book.author
+        return cell
+    }
+}
+
+extension WishedBooksController: UITableViewDelegate {
+    
 }
