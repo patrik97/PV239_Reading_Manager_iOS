@@ -20,7 +20,6 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTable: UITableView!
     weak var myLibraryBookDelegate: MyLibraryBookDelegate?
-    weak var wishedBooksDelegate: WishedBooksDelegate?
     
     
     override func viewDidLoad() {
@@ -74,7 +73,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
         let book = books[indexPath.row]
         let alert = UIAlertController(title: "Do you wish to add this book to yours?", message: book.author + "\n" + book.title, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes to Library", style: .default, handler: { action in self.addToMyLibrary(indexPath: indexPath) }))
-        alert.addAction(UIAlertAction(title: "Yes to Wished books", style: .default, handler: { action in self.addToWishedBooks(indexPath: indexPath)} ))
+        alert.addAction(UIAlertAction(title: "Yes to Wishlist", style: .default, handler: { action in self.addToWishedBooks(indexPath: indexPath)} ))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
@@ -86,7 +85,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     private func addToWishedBooks(indexPath: IndexPath) {
-        wishedBooksDelegate?.addBook(book: books[indexPath.row])
+        //wishedBooksDelegate?.addBook(book: books[indexPath.row])
         books.remove(at: indexPath.row)
         self.booksTable.reloadData()
     }
