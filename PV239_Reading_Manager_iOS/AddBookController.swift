@@ -9,6 +9,10 @@
 import UIKit
 import Alamofire
 
+protocol AddBookDelegate: class {
+    func addBook(book: Book)
+}
+
 class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
@@ -17,17 +21,17 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     var bookTitle = String()
     var bookAuthor = String()
     var bookId = Int()
+    var type = String()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTable: UITableView!
-    weak var myLibraryBookDelegate: MyLibraryBookDelegate?
-    weak var wishedBookDelegate: WishedBookDelegate?
-    
+    weak var bookHandleDelegate: AddBookDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         booksTable.delegate = self
         booksTable.dataSource = self
+        
     }
     
     private func fetchBooks(query: String) {
@@ -72,21 +76,14 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = books[indexPath.row]
-        let alert = UIAlertController(title: "Do you wish to add this book to yours?", message: book.author + "\n" + book.title, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes to Library", style: .default, handler: { action in self.addToMyLibrary(indexPath: indexPath) }))
-        alert.addAction(UIAlertAction(title: "Yes to Wishlist", style: .default, handler: { action in self.addToWishedBooks(indexPath: indexPath)} ))
+        let alert = UIAlertController(title: "Add this book to \(self.type)?", message: book.author + "\n" + book.title, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in self.addToMyLibrary(indexPath: indexPath) }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     private func addToMyLibrary(indexPath: IndexPath) {
-        myLibraryBookDelegate?.addBook(book: books[indexPath.row])
-        books.remove(at: indexPath.row)
-        self.booksTable.reloadData()
-    }
-    
-    private func addToWishedBooks(indexPath: IndexPath) {
-        wishedBookDelegate?.addBook(book: books[indexPath.row])
+        bookHandleDelegate?.addBook(book: books[indexPath.row])
         books.remove(at: indexPath.row)
         self.booksTable.reloadData()
     }

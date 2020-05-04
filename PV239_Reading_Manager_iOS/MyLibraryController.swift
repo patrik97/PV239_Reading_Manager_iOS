@@ -8,11 +8,7 @@
 
 import UIKit
 
-protocol MyLibraryBookDelegate: class {
-    func addBook(book: Book)
-}
-
-class MyLibraryController: UIViewController, MyLibraryBookDelegate {
+class MyLibraryController: UIViewController, AddBookDelegate {
     var myBooks: [Book] = []
     @IBOutlet weak var myLibraryTableView: UITableView!
     
@@ -25,7 +21,8 @@ class MyLibraryController: UIViewController, MyLibraryBookDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addMyBookSegue", let addMyBookController = segue.destination as? AddBookController {
-            addMyBookController.myLibraryBookDelegate = self
+            addMyBookController.bookHandleDelegate = self
+            addMyBookController.type = "library"
         }
     }
     
