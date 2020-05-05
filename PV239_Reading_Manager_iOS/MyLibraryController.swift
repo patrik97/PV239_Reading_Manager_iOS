@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let LIBRARY_BOOKS_KEY = "library_books"
+
 class MyLibraryController: UIViewController, AddBookDelegate {
     var myBooks: [Book] = []
     @IBOutlet weak var myLibraryTableView: UITableView!
@@ -15,6 +17,7 @@ class MyLibraryController: UIViewController, AddBookDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadLibraryBooks()
         myLibraryTableView.delegate = self
         myLibraryTableView.dataSource = self
     }
@@ -29,6 +32,7 @@ class MyLibraryController: UIViewController, AddBookDelegate {
     func addBook(book: Book) {
         myBooks.append(book)
         myLibraryTableView.reloadData()
+        persistLibraryBooks()
     }
 }
     
@@ -49,8 +53,39 @@ extension MyLibraryController: UITableViewDataSource {
         cell.detailTextLabel?.text = book.author
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            myBooks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            persistLibraryBooks()
+        }
+    }
 }
 
 extension MyLibraryController: UITableViewDelegate {
     
+}
+
+extension MyLibraryController {
+    private func persistLibraryBooks() {
+        do {
+            let booksAsJson = try JSONEncoder().encode(myBooks)
+            UserDefaults.standard.set(booksAsJson, forKey: LIBRARY_BOOKS_KEY)
+        } catch (let error) {
+            print("Error when saving library books: \(error)")
+        }
+    }
+    
+    private func loadLibraryBooks() {
+        guard let jsonData = UserDefaults.standard.data(forKey: LIBRARY_BOOKS_KEY) else {
+            return
+        }
+        
+        do {
+            myBooks = try JSONDecoder().decode([Book].self, from: jsonData)
+        } catch (let error) {
+            print("Error when loading library books: \(error)")
+        }
+    }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Book {
+class Book: Codable {
     let id: Int
     let author: String
     let title: String

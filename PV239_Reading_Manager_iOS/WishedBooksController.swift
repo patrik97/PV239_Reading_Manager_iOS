@@ -8,6 +8,7 @@
 
 import UIKit
 
+private let WISHLIST_BOOKS_KEY = "wished_books"
 
 class WishedBooksController: UIViewController, AddBookDelegate {
     var wishedBooks: [Book] = []
@@ -15,6 +16,7 @@ class WishedBooksController: UIViewController, AddBookDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadWishlistBooks()
         wishlistTableView.delegate = self
         wishlistTableView.dataSource = self
     }
@@ -29,6 +31,7 @@ class WishedBooksController: UIViewController, AddBookDelegate {
     func addBook(book: Book) {
         wishedBooks.append(book)
         wishlistTableView.reloadData()
+        persistWishlistBooks()
     }
 }
 
@@ -49,8 +52,39 @@ extension WishedBooksController: UITableViewDataSource {
         cell.detailTextLabel?.text = book.author
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+             wishedBooks.remove(at: indexPath.row)
+             tableView.deleteRows(at: [indexPath], with: .fade)
+             persistWishlistBooks()
+        }
+    }
 }
 
 extension WishedBooksController: UITableViewDelegate {
+        
+}
+
+extension WishedBooksController {
+    private func persistWishlistBooks() {
+        do {
+            let booksAsJson = try JSONEncoder().encode(wishedBooks)
+            UserDefaults.standard.set(booksAsJson, forKey: WISHLIST_BOOKS_KEY)
+        } catch (let error) {
+            print("Error when saving wishlist books: \(error)")
+        }
+    }
     
+    private func loadWishlistBooks() {
+        guard let jsonData = UserDefaults.standard.data(forKey: WISHLIST_BOOKS_KEY) else {
+            return
+        }
+        
+        do {
+            wishedBooks = try JSONDecoder().decode([Book].self, from: jsonData)
+        } catch (let error) {
+            print("Error when loading wishlist books: \(error)")
+        }
+    }
 }

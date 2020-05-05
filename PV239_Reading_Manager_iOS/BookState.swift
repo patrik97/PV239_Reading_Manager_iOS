@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum BookState {
+enum BookState: String, Codable {
     case unread
     case read
-    case reding
+    case reading
     case notOwned
 }

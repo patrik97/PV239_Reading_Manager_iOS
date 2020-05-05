@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BookNote {
+struct BookNote: Codable {
     var note: String
     var added: Date
 }
