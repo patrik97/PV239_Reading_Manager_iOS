@@ -10,7 +10,7 @@ import UIKit
 
 private let WISHLIST_BOOKS_KEY = "wished_books"
 
-class WishedBooksController: UIViewController, AddBookDelegate {
+class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDelegate {
     var wishedBooks: [Book] = []
     @IBOutlet weak var wishlistTableView: UITableView!
     
@@ -26,12 +26,20 @@ class WishedBooksController: UIViewController, AddBookDelegate {
             addMyBookController.bookHandleDelegate = self
             addMyBookController.type = "wishlist"
         }
+        
+        if segue.identifier == "wishedBookDetailSegue", let bookDetailController = segue.destination as? BookDetailController {
+            bookDetailController.book = wishedBooks[wishlistTableView.indexPathForSelectedRow?.row ?? 0]
+        }
     }
     
     func addBook(book: Book) {
         wishedBooks.append(book)
         wishlistTableView.reloadData()
         persistWishlistBooks()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
 
@@ -60,10 +68,6 @@ extension WishedBooksController: UITableViewDataSource {
              persistWishlistBooks()
         }
     }
-}
-
-extension WishedBooksController: UITableViewDelegate {
-        
 }
 
 extension WishedBooksController {

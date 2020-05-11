@@ -10,7 +10,7 @@ import UIKit
 
 private let LIBRARY_BOOKS_KEY = "library_books"
 
-class MyLibraryController: UIViewController, AddBookDelegate {
+class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegate {
     var myBooks: [Book] = []
     @IBOutlet weak var myLibraryTableView: UITableView!
     
@@ -27,12 +27,20 @@ class MyLibraryController: UIViewController, AddBookDelegate {
             addMyBookController.bookHandleDelegate = self
             addMyBookController.type = "library"
         }
+        
+        if segue.identifier == "myBookDetailSegue", let bookDetailController = segue.destination as? BookDetailController {
+            bookDetailController.book = myBooks[myLibraryTableView.indexPathForSelectedRow?.row ?? 0]
+        }
     }
     
     func addBook(book: Book) {
         myBooks.append(book)
         myLibraryTableView.reloadData()
         persistLibraryBooks()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
     
@@ -61,10 +69,6 @@ extension MyLibraryController: UITableViewDataSource {
             persistLibraryBooks()
         }
     }
-}
-
-extension MyLibraryController: UITableViewDelegate {
-    
 }
 
 extension MyLibraryController {
