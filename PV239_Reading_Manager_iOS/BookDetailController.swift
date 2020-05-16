@@ -8,7 +8,8 @@
 
 import UIKit
 
-class BookDetailController: UIViewController {
+class BookDetailController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    @IBOutlet weak var noteCollectionView: UICollectionView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
     var book: Book?
@@ -18,4 +19,22 @@ class BookDetailController: UIViewController {
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return book?.notes.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookNoteCell", for: indexPath) as? NoteCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.noteLabel.text = book?.notes[indexPath.row].note
+        return cell
+    }
+}
+
+class NoteCell : UICollectionViewCell {
+    @IBOutlet weak var noteLabel: UILabel!
+    
 }

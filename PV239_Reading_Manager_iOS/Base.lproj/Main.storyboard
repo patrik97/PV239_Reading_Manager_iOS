@@ -248,7 +248,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kMw-Ag-b6U">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookNoteCell" id="kMw-Ag-b6U" customClass="NoteCell" customModule="PV239_Reading_Manager_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="V8H-8a-eSV">
@@ -270,6 +270,9 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="175" height="100"/>
+                                        <connections>
+                                            <outlet property="noteLabel" destination="AJF-w0-raH" id="O1i-0K-Wsa"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -289,15 +292,90 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rFN-uC-W40"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Book detail" id="83j-Zk-B4a"/>
+                    <navigationItem key="navigationItem" title="Book detail" id="83j-Zk-B4a">
+                        <barButtonItem key="rightBarButtonItem" title="Add note" id="LPy-ja-BNR">
+                            <connections>
+                                <segue destination="e93-cx-Vd7" kind="presentation" id="VPD-W2-5jp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bookAuthor" destination="HsS-Nq-1ee" id="YEf-QG-yZF"/>
                         <outlet property="bookTitle" destination="z9e-Ln-0bb" id="pYl-Vz-OcQ"/>
+                        <outlet property="noteCollectionView" destination="NUI-5S-CYr" id="lhV-xe-WmG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sI4-cu-kAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2842.0289855072465" y="393.75"/>
+        </scene>
+        <!--Add Note Controller-->
+        <scene sceneID="fVd-6s-JKL">
+            <objects>
+                <viewController id="e93-cx-Vd7" customClass="AddNoteController" customModule="PV239_Reading_Manager_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lLp-Pl-Yzq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lnw-34-lyB">
+                                <rect key="frame" x="20" y="20" width="374" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="zAZ-bq-MRv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textEditedAction:" destination="e93-cx-Vd7" eventType="editingChanged" id="82x-u1-yIe"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100/100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgE-RX-Mla">
+                                <rect key="frame" x="200" y="62" width="194" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-i6-fFp">
+                                <rect key="frame" x="20" y="152" width="92" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="e93-cx-Vd7" eventType="touchUpInside" id="XUG-qE-aEa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JE-un-66p">
+                                <rect key="frame" x="190" y="152" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="e93-cx-Vd7" eventType="touchUpInside" id="26J-Y0-CjX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" secondItem="lnw-34-lyB" secondAttribute="trailing" constant="20" id="6Uk-vC-wtn"/>
+                            <constraint firstItem="9NG-i6-fFp" firstAttribute="top" secondItem="lnw-34-lyB" secondAttribute="bottom" constant="100" id="Dck-UF-afx"/>
+                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" secondItem="SgE-RX-Mla" secondAttribute="trailing" constant="20" id="RHs-8z-NcR"/>
+                            <constraint firstItem="9JE-un-66p" firstAttribute="centerX" secondItem="lLp-Pl-Yzq" secondAttribute="centerX" id="VeW-Or-vbb"/>
+                            <constraint firstItem="9JE-un-66p" firstAttribute="leading" secondItem="9NG-i6-fFp" secondAttribute="trailing" constant="78" id="XEf-Xu-QGN"/>
+                            <constraint firstItem="SgE-RX-Mla" firstAttribute="top" secondItem="lnw-34-lyB" secondAttribute="bottom" constant="10" id="a8H-GN-GSO"/>
+                            <constraint firstItem="9NG-i6-fFp" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="b3v-E5-Z13"/>
+                            <constraint firstItem="lnw-34-lyB" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="exh-GG-pBF"/>
+                            <constraint firstItem="9JE-un-66p" firstAttribute="top" secondItem="lnw-34-lyB" secondAttribute="bottom" constant="100" id="itb-VW-dso"/>
+                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SgE-RX-Mla" secondAttribute="trailing" id="nJT-Tj-0Wo"/>
+                            <constraint firstItem="SgE-RX-Mla" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="200" id="o3C-Hj-wMa"/>
+                            <constraint firstItem="lnw-34-lyB" firstAttribute="top" secondItem="oDQ-ep-pDv" secondAttribute="top" constant="20" id="xV9-gL-QEm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oDQ-ep-pDv"/>
+                    </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="SgE-RX-Mla" id="7oZ-1N-h50"/>
+                        <outlet property="noteText" destination="lnw-34-lyB" id="16Z-9z-Yno"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ch9-Uu-Zex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3778.2608695652175" y="394.41964285714283"/>
         </scene>
         <!--Add Book Controller-->
         <scene sceneID="u8X-Ce-etw">
