@@ -95,7 +95,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Dgf-7b-ipa" kind="presentation" identifier="wishedBookDetailSegue" id="MVg-Hg-nfI"/>
+                                            <segue destination="Dgf-7b-ipa" kind="show" identifier="wishedBookDetailSegue" id="MVg-Hg-nfI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -181,7 +181,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Dgf-7b-ipa" kind="presentation" identifier="myBookDetailSegue" id="5I7-Eh-raJ"/>
+                                            <segue destination="Dgf-7b-ipa" kind="show" identifier="myBookDetailSegue" id="5I7-Eh-raJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -216,22 +216,42 @@
             <objects>
                 <viewController id="Dgf-7b-ipa" customClass="BookDetailController" customModule="PV239_Reading_Manager_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Svb-vj-VdL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9e-Ln-0bb">
-                                <rect key="frame" x="172" y="181" width="71" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9e-Ln-0bb">
+                                <rect key="frame" x="20" y="169.5" width="374" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="70T-1I-CXz"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsS-Nq-1ee">
+                                <rect key="frame" x="20" y="108" width="374" height="31.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="95" id="EbV-e9-nWL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="z9e-Ln-0bb" secondAttribute="trailing" constant="20" id="LIO-O3-GFw"/>
+                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="HsS-Nq-1ee" secondAttribute="trailing" constant="20" id="My2-15-kjc"/>
+                            <constraint firstItem="z9e-Ln-0bb" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="dm6-xq-GgQ"/>
+                            <constraint firstItem="HsS-Nq-1ee" firstAttribute="top" secondItem="rFN-uC-W40" secondAttribute="top" constant="20" id="fQ6-ZM-voa"/>
+                            <constraint firstItem="HsS-Nq-1ee" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="qF3-n9-hAj"/>
+                            <constraint firstItem="z9e-Ln-0bb" firstAttribute="top" secondItem="HsS-Nq-1ee" secondAttribute="bottom" constant="30" id="qaH-bR-Qhc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rFN-uC-W40"/>
                     </view>
                     <navigationItem key="navigationItem" title="Book detail" id="83j-Zk-B4a"/>
                     <connections>
+                        <outlet property="bookAuthor" destination="HsS-Nq-1ee" id="YEf-QG-yZF"/>
                         <outlet property="bookTitle" destination="z9e-Ln-0bb" id="pYl-Vz-OcQ"/>
                     </connections>
                 </viewController>
@@ -356,7 +376,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Yv5-DE-KJm"/>
-        <segue reference="MVg-Hg-nfI"/>
+        <segue reference="5I7-Eh-raJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>

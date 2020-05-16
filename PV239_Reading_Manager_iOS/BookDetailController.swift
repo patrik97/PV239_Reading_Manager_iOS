@@ -10,10 +10,16 @@ import UIKit
 
 class BookDetailController: UIViewController {
     @IBOutlet weak var bookTitle: UILabel!
+    @IBOutlet weak var bookAuthor: UILabel!
     var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIDevice.current.orientation.isLandscape {
+            bookTitle.numberOfLines = 2
+            bookAuthor.numberOfLines = 1
+        }
         bookTitle.text = book?.title
+        bookAuthor.text = book?.author
     }
 }
