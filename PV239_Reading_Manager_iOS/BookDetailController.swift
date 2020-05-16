@@ -15,10 +15,6 @@ class BookDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UIDevice.current.orientation.isLandscape {
-            bookTitle.numberOfLines = 2
-            bookAuthor.numberOfLines = 1
-        }
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
     }
