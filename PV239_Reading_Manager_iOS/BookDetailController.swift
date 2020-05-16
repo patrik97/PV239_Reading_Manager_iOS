@@ -16,8 +16,17 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        noteCollectionView.dataSource = self
+        noteCollectionView.delegate = self
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addBookNoteSegue", let addNoteController = segue.destination as? AddNoteController {
+            addNoteController.book = book
+            addNoteController.noteCollectionView = noteCollectionView
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -36,5 +45,4 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
 
 class NoteCell : UICollectionViewCell {
     @IBOutlet weak var noteLabel: UILabel!
-    
 }
