@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Book: Codable {
+class Book: Codable, Equatable {
     let id: Int
     let author: String
     let title: String
@@ -26,5 +26,12 @@ class Book: Codable {
      */
     func addNote(note: String) {
         notes.append(BookNote(note: note, added: Date()))
+    }
+    
+    static func == (lhs: Book, rhs: Book) -> Bool {
+        if (lhs.id == rhs.id) {
+            return true
+        }
+        return false
     }
 }

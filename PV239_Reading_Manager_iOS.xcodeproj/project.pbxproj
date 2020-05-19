@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8037BF6F2474219B004DA69A /* LocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8037BF6E2474219B004DA69A /* LocalStorageManager.swift */; };
+		8037BF71247421CC004DA69A /* StorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */; };
 		8049D33F2451F691009CC6C2 /* BookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8049D33E2451F691009CC6C2 /* BookRequest.swift */; };
 		8049D3412452248D009CC6C2 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8049D3402452248D009CC6C2 /* BookTableViewController.swift */; };
 		B831FBA2244CE515007DB278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B831FBA1244CE515007DB278 /* Alamofire */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8037BF6E2474219B004DA69A /* LocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
+		8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerProtocol.swift; sourceTree = "<group>"; };
 		8049D33E2451F691009CC6C2 /* BookRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRequest.swift; sourceTree = "<group>"; };
 		8049D3402452248D009CC6C2 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
 		B857B875247014520091F3B8 /* AddNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteController.swift; sourceTree = "<group>"; };
@@ -91,10 +95,12 @@
 				B897F9B32438CC01000B483C /* MyLibraryController.swift */,
 				B897F9B52438D01F000B483C /* WishedBooksController.swift */,
 				B897F9B724390258000B483C /* BookDetailController.swift */,
-				B897F9B924390482000B483C /* AddBookController.swift */,
 				B897F9BB24390A3F000B483C /* BookNote.swift */,
+				B897F9B924390482000B483C /* AddBookController.swift */,
 				8049D33E2451F691009CC6C2 /* BookRequest.swift */,
 				B857B875247014520091F3B8 /* AddNoteController.swift */,
+				8037BF6E2474219B004DA69A /* LocalStorageManager.swift */,
+				8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */,
 			);
 			path = PV239_Reading_Manager_iOS;
 			sourceTree = "<group>";
@@ -184,11 +190,13 @@
 				B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */,
 				B897F9B22438B624000B483C /* User.swift in Sources */,
 				8049D33F2451F691009CC6C2 /* BookRequest.swift in Sources */,
+				8037BF71247421CC004DA69A /* StorageManagerProtocol.swift in Sources */,
 				B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */,
 				B897F9BA24390482000B483C /* AddBookController.swift in Sources */,
 				B897F9BC24390A3F000B483C /* BookNote.swift in Sources */,
 				8049D3412452248D009CC6C2 /* BookTableViewController.swift in Sources */,
 				B897F9982438B4AB000B483C /* SceneDelegate.swift in Sources */,
+				8037BF6F2474219B004DA69A /* LocalStorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

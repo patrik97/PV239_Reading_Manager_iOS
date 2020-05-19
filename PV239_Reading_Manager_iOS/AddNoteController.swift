@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let LIBRARY_BOOKS_KEY = "library_books"
+
 class AddNoteController: UIViewController {
     @IBOutlet weak var noteText: UITextField!
     @IBOutlet weak var counterLabel: UILabel!
@@ -36,6 +38,7 @@ class AddNoteController: UIViewController {
             return
         }
         book?.addNote(note: noteText.text ?? "")
+        
         noteCollectionView?.reloadData()
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
@@ -48,5 +51,16 @@ class AddNoteController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+}
+
+extension MyLibraryController {
+    private func persistLibraryBooks() {
+        do {
+            let booksAsJson = try JSONEncoder().encode(myBooks)
+            UserDefaults.standard.set(booksAsJson, forKey: LIBRARY_BOOKS_KEY)
+        } catch (let error) {
+            print("Error when saving library books: \(error)")
+        }
     }
 }

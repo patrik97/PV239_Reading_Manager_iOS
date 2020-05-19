@@ -8,18 +8,23 @@
 
 import UIKit
 
-private let LIBRARY_BOOKS_KEY = "library_books"
-
 class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegate {
     var myBooks: [Book] = []
     @IBOutlet weak var myLibraryTableView: UITableView!
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        loadLibraryBooks()
+        LocalStorageManager.shared.loadLibraryBooks(completion: {(books: [Book]) -> () in myBooks = books})
         myLibraryTableView.delegate = self
         myLibraryTableView.dataSource = self
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        LocalStorageManager.shared.getLibraryBooks(completion: {(books: [Book]) -> () in myBooks = books})
+        print(myBooks)
+        myLibraryTableView.reloadData()
+        super.viewDidAppear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,7 +41,7 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
     func addBook(book: Book) {
         myBooks.append(book)
         myLibraryTableView.reloadData()
-        persistLibraryBooks()
+        LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,30 +71,7 @@ extension MyLibraryController: UITableViewDataSource {
         if editingStyle == .delete {
             myBooks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            persistLibraryBooks()
-        }
-    }
-}
-
-extension MyLibraryController {
-    private func persistLibraryBooks() {
-        do {
-            let booksAsJson = try JSONEncoder().encode(myBooks)
-            UserDefaults.standard.set(booksAsJson, forKey: LIBRARY_BOOKS_KEY)
-        } catch (let error) {
-            print("Error when saving library books: \(error)")
-        }
-    }
-    
-    private func loadLibraryBooks() {
-        guard let jsonData = UserDefaults.standard.data(forKey: LIBRARY_BOOKS_KEY) else {
-            return
-        }
-        
-        do {
-            myBooks = try JSONDecoder().decode([Book].self, from: jsonData)
-        } catch (let error) {
-            print("Error when loading library books: \(error)")
+            LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
         }
     }
 }

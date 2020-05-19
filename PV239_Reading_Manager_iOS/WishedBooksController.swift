@@ -8,17 +8,21 @@
 
 import UIKit
 
-private let WISHLIST_BOOKS_KEY = "wished_books"
-
 class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDelegate {
     var wishedBooks: [Book] = []
     @IBOutlet weak var wishlistTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadWishlistBooks()
+        LocalStorageManager.shared.loadWishedBooks(completion: {(books: [Book]) -> () in wishedBooks = books})
         wishlistTableView.delegate = self
         wishlistTableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        LocalStorageManager.shared.loadWishedBooks(completion: {(books: [Book]) -> () in wishedBooks = books})
+        wishlistTableView.reloadData()
+        super.viewDidAppear(animated);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,7 +39,7 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
     func addBook(book: Book) {
         wishedBooks.append(book)
         wishlistTableView.reloadData()
-        persistWishlistBooks()
+        LocalStorageManager.shared.saveWishedBooks(books: wishedBooks, completion: {() -> () in return})
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,34 +65,24 @@ extension WishedBooksController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-             wishedBooks.remove(at: indexPath.row)
-             tableView.deleteRows(at: [indexPath], with: .fade)
-             persistWishlistBooks()
-        }
-    }
-}
-
-extension WishedBooksController {
-    private func persistWishlistBooks() {
-        do {
-            let booksAsJson = try JSONEncoder().encode(wishedBooks)
-            UserDefaults.standard.set(booksAsJson, forKey: WISHLIST_BOOKS_KEY)
-        } catch (let error) {
-            print("Error when saving wishlist books: \(error)")
-        }
-    }
     
-    private func loadWishlistBooks() {
-        guard let jsonData = UserDefaults.standard.data(forKey: WISHLIST_BOOKS_KEY) else {
-            return
+   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+            self.wishedBooks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            LocalStorageManager.shared.saveWishedBooks(books: self.wishedBooks, completion: {() -> () in return})
         }
-        
-        do {
-            wishedBooks = try JSONDecoder().decode([Book].self, from: jsonData)
-        } catch (let error) {
-            print("Error when loading wishlist books: \(error)")
+        delete.backgroundColor = UIColor.red
+
+        let complete = UITableViewRowAction(style: .default, title: "Move to Library") { (action, indexPath) in
+            LocalStorageManager.shared.moveBookToLibrary(book: self.wishedBooks[indexPath.row], completion: {() -> () in
+                    self.wishedBooks.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                })
         }
+        complete.backgroundColor = UIColor.blue
+
+        return [delete, complete]
     }
 }
