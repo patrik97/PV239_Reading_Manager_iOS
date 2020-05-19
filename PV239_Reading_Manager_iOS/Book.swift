@@ -28,6 +28,10 @@ class Book: Codable, Equatable {
         notes.append(BookNote(note: note, added: Date()))
     }
     
+    func removeNote(index: Int) {
+        notes.remove(at: index)
+    }
+    
     static func == (lhs: Book, rhs: Book) -> Bool {
         if (lhs.id == rhs.id) {
             return true
