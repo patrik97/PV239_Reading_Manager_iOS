@@ -15,6 +15,8 @@ class AddNoteController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
     var book: Book?
     weak var noteCollectionView: UICollectionView?
+    // TODO: Replace with type struct -> "library" or "wished"
+    var type: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,14 @@ class AddNoteController: UIViewController {
             return
         }
         book?.addNote(note: noteText.text ?? "")
+        
+        if (type == "library") {
+            LocalStorageManager.shared.updateLibraryBook(book: book!, completion: {() -> () in return})
+        }
+        
+        if (type == "wished") {
+            LocalStorageManager.shared.updateWishedBook(book: book!, completion: {() -> () in return})
+        }
         
         noteCollectionView?.reloadData()
         self.presentingViewController?.dismiss(animated: true, completion: nil)

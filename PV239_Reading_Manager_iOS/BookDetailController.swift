@@ -13,6 +13,8 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
     var book: Book?
+    // TODO: Replace with type struct -> "library" or "wished"
+    var type: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         if segue.identifier == "addBookNoteSegue", let addNoteController = segue.destination as? AddNoteController {
             addNoteController.book = book
             addNoteController.noteCollectionView = noteCollectionView
+            addNoteController.type = type
         }
     }
     

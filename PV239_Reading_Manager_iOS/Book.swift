@@ -20,7 +20,7 @@ class Book: Codable, Equatable {
         self.author = author;
         self.title = title;
     }
-
+    
     /*
      Add new note into notes
      */

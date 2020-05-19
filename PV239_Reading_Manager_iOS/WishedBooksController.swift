@@ -33,6 +33,7 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
         
         if segue.identifier == "wishedBookDetailSegue", let bookDetailController = segue.destination as? BookDetailController {
             bookDetailController.book = wishedBooks[wishlistTableView.indexPathForSelectedRow?.row ?? 0]
+            bookDetailController.type = "wished"
         }
     }
     

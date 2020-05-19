@@ -35,6 +35,7 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
         
         if segue.identifier == "myBookDetailSegue", let bookDetailController = segue.destination as? BookDetailController {
             bookDetailController.book = myBooks[myLibraryTableView.indexPathForSelectedRow?.row ?? 0]
+            bookDetailController.type = "library"
         }
     }
     

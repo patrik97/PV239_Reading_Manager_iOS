@@ -80,11 +80,26 @@ class LocalStorageManager: StorageManagerProtocol {
     }
     
     func updateWishedBook(book: Book, completion: () -> ()) {
-        return
+         if let index = wishedBooks.firstIndex(of: book) {
+            wishedBooks[index] = book;
+            saveWishedBooks(books: wishedBooks, completion: {() -> () in return})
+            completion()
+         } else {
+            print("Invalid book");
+            return
+         }
     }
     
     func updateLibraryBook(book: Book, completion: () -> ()) {
-        return
+        if let index = libraryBooks.firstIndex(of: book) {
+            libraryBooks[index] = book;
+            print(libraryBooks[index].notes)
+            saveLibraryBooks(books: libraryBooks, completion: {() -> () in return})
+            completion()
+        } else {
+           print("Invalid book");
+           return
+        }
     }
     
     func moveBookToLibrary(book: Book, completion: () -> ()) {
