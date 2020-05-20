@@ -20,7 +20,6 @@
 		B897F9A22438B4B1000B483C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B897F9A02438B4B1000B483C /* LaunchScreen.storyboard */; };
 		B897F9AA2438B5D0000B483C /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9A92438B5D0000B483C /* Book.swift */; };
 		B897F9B02438B60E000B483C /* BookState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9AF2438B60E000B483C /* BookState.swift */; };
-		B897F9B22438B624000B483C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B12438B624000B483C /* User.swift */; };
 		B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B32438CC01000B483C /* MyLibraryController.swift */; };
 		B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B52438D01F000B483C /* WishedBooksController.swift */; };
 		B897F9B824390258000B483C /* BookDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9B724390258000B483C /* BookDetailController.swift */; };
@@ -43,7 +42,6 @@
 		B897F9A32438B4B1000B483C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B897F9A92438B5D0000B483C /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B897F9AF2438B60E000B483C /* BookState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookState.swift; sourceTree = "<group>"; };
-		B897F9B12438B624000B483C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B897F9B32438CC01000B483C /* MyLibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryController.swift; sourceTree = "<group>"; };
 		B897F9B52438D01F000B483C /* WishedBooksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishedBooksController.swift; sourceTree = "<group>"; };
 		B897F9B724390258000B483C /* BookDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailController.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				B897F9A32438B4B1000B483C /* Info.plist */,
 				B897F9A92438B5D0000B483C /* Book.swift */,
 				B897F9AF2438B60E000B483C /* BookState.swift */,
-				B897F9B12438B624000B483C /* User.swift */,
 				B897F9B32438CC01000B483C /* MyLibraryController.swift */,
 				B897F9B52438D01F000B483C /* WishedBooksController.swift */,
 				B897F9B724390258000B483C /* BookDetailController.swift */,
@@ -188,7 +185,6 @@
 				B897F9B02438B60E000B483C /* BookState.swift in Sources */,
 				B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */,
 				B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */,
-				B897F9B22438B624000B483C /* User.swift in Sources */,
 				8049D33F2451F691009CC6C2 /* BookRequest.swift in Sources */,
 				8037BF71247421CC004DA69A /* StorageManagerProtocol.swift in Sources */,
 				B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */,

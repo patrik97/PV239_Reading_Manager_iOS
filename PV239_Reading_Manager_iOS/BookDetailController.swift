@@ -38,11 +38,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = book?.notes.count ?? 0
-        if count == 0 {
-            deleteButton.isHidden = true
-        } else {
-            deleteButton.isHidden = false
-        }
+        deleteButton.isHidden = count == 0
         return count
     }
     
