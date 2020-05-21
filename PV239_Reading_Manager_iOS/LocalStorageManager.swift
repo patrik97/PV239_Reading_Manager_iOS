@@ -29,6 +29,10 @@ class LocalStorageManager: StorageManagerProtocol {
         completion(wishedBooks)
     }
     
+    func getAllBooks(completion: ([Book], [Book]) -> ()) {
+        completion(libraryBooks, wishedBooks)
+    }
+    
     func loadLibraryBooks(completion: ([Book]) -> ()) {
         guard let jsonData = UserDefaults.standard.data(forKey: LIBRARY_BOOKS_KEY) else {
            return

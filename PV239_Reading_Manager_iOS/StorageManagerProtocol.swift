@@ -11,6 +11,7 @@ import Foundation
 protocol StorageManagerProtocol {
     func loadLibraryBooks(completion: ([Book]) -> ())
     func loadWishedBooks(completion: ([Book]) -> ())
+    func getAllBooks(completion: ([Book], [Book]) -> ())
     func updateWishedBook(book: Book, completion: () -> ())
     func updateLibraryBook(book: Book, completion: () -> ())
     func moveBookToLibrary(book: Book, completion: () -> ())

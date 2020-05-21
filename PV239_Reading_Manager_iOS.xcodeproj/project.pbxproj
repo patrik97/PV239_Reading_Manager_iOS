@@ -11,6 +11,9 @@
 		8037BF71247421CC004DA69A /* StorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */; };
 		8049D33F2451F691009CC6C2 /* BookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8049D33E2451F691009CC6C2 /* BookRequest.swift */; };
 		8049D3412452248D009CC6C2 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8049D3402452248D009CC6C2 /* BookTableViewController.swift */; };
+		8081AE6424766EE200F7790E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8081AE6024766E1500F7790E /* Charts.framework */; };
+		8081AE6524766EE200F7790E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8081AE6024766E1500F7790E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8081AE6A24766F8200F7790E /* StatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081AE6924766F8200F7790E /* StatisticsController.swift */; };
 		B831FBA2244CE515007DB278 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B831FBA1244CE515007DB278 /* Alamofire */; };
 		B857B876247014520091F3B8 /* AddNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B857B875247014520091F3B8 /* AddNoteController.swift */; };
 		B897F9962438B4AB000B483C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9952438B4AB000B483C /* AppDelegate.swift */; };
@@ -27,11 +30,44 @@
 		B897F9BC24390A3F000B483C /* BookNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9BB24390A3F000B483C /* BookNote.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8081AE5F24766E1500F7790E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8081AE5A24766E1500F7790E /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = Charts;
+		};
+		8081AE6124766E1500F7790E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8081AE5A24766E1500F7790E /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = ChartsTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8081AE6624766EE200F7790E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8081AE6524766EE200F7790E /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8037BF6E2474219B004DA69A /* LocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
 		8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerProtocol.swift; sourceTree = "<group>"; };
 		8049D33E2451F691009CC6C2 /* BookRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRequest.swift; sourceTree = "<group>"; };
 		8049D3402452248D009CC6C2 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
+		8081AE5A24766E1500F7790E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		8081AE6924766F8200F7790E /* StatisticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsController.swift; sourceTree = "<group>"; };
 		B857B875247014520091F3B8 /* AddNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteController.swift; sourceTree = "<group>"; };
 		B897F9922438B4AB000B483C /* PV239_Reading_Manager_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PV239_Reading_Manager_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B897F9952438B4AB000B483C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,17 +91,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				B831FBA2244CE515007DB278 /* Alamofire in Frameworks */,
+				8081AE6424766EE200F7790E /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8081AE5B24766E1500F7790E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8081AE6024766E1500F7790E /* Charts.framework */,
+				8081AE6224766E1500F7790E /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8081AE6324766EE200F7790E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B897F9892438B4AB000B483C = {
 			isa = PBXGroup;
 			children = (
 				B897F9942438B4AB000B483C /* PV239_Reading_Manager_iOS */,
 				B897F9932438B4AB000B483C /* Products */,
+				8081AE6324766EE200F7790E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +152,8 @@
 				B857B875247014520091F3B8 /* AddNoteController.swift */,
 				8037BF6E2474219B004DA69A /* LocalStorageManager.swift */,
 				8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */,
+				8081AE5A24766E1500F7790E /* Charts.xcodeproj */,
+				8081AE6924766F8200F7790E /* StatisticsController.swift */,
 			);
 			path = PV239_Reading_Manager_iOS;
 			sourceTree = "<group>";
@@ -112,6 +168,7 @@
 				B897F98E2438B4AB000B483C /* Sources */,
 				B897F98F2438B4AB000B483C /* Frameworks */,
 				B897F9902438B4AB000B483C /* Resources */,
+				8081AE6624766EE200F7790E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,12 +211,35 @@
 			);
 			productRefGroup = B897F9932438B4AB000B483C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8081AE5B24766E1500F7790E /* Products */;
+					ProjectRef = 8081AE5A24766E1500F7790E /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B897F9912438B4AB000B483C /* PV239_Reading_Manager_iOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8081AE6024766E1500F7790E /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 8081AE5F24766E1500F7790E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8081AE6224766E1500F7790E /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 8081AE6124766E1500F7790E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B897F9902438B4AB000B483C /* Resources */ = {
@@ -183,6 +263,7 @@
 				B897F9B824390258000B483C /* BookDetailController.swift in Sources */,
 				B857B876247014520091F3B8 /* AddNoteController.swift in Sources */,
 				B897F9B02438B60E000B483C /* BookState.swift in Sources */,
+				8081AE6A24766F8200F7790E /* StatisticsController.swift in Sources */,
 				B897F9B62438D01F000B483C /* WishedBooksController.swift in Sources */,
 				B897F9B42438CC01000B483C /* MyLibraryController.swift in Sources */,
 				8049D33F2451F691009CC6C2 /* BookRequest.swift in Sources */,
