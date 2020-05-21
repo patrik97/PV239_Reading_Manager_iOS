@@ -27,11 +27,14 @@ class StatisticsController: UIViewController, ChartViewDelegate {
         pieChart.center = view.center
         
         view.addSubview(pieChart)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         var entries = [PieChartDataEntry]()
         
-        LocalStorageManager.shared.getAllBooks(completion: { (libBooks, wishBooks) in
-            self.libraryBooks = libBooks
-            self.wishedBooks = wishBooks
+        LocalStorageManager.shared.loadAllBooks(completion: { (libBooks, wishBooks) in
+            libraryBooks = libBooks
+            wishedBooks = wishBooks
             
             entries.append(PieChartDataEntry(value: Double(libraryBooks.count), label: "Owned books"))
             entries.append(PieChartDataEntry(value: Double(wishedBooks.count), label: "Wished books"))

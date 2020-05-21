@@ -29,8 +29,12 @@ class LocalStorageManager: StorageManagerProtocol {
         completion(wishedBooks)
     }
     
-    func getAllBooks(completion: ([Book], [Book]) -> ()) {
-        completion(libraryBooks, wishedBooks)
+    func loadAllBooks(completion: ([Book], [Book]) -> ()) {
+        loadLibraryBooks(completion: {(libBooks) -> () in
+            loadWishedBooks { (wishBooks) -> () in
+                completion(libBooks, wishBooks)
+            }
+        })
     }
     
     func loadLibraryBooks(completion: ([Book]) -> ()) {
