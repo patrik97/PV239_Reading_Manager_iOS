@@ -49,8 +49,8 @@ class AddNoteController: UIViewController {
             LocalStorageManager.shared.updateWishedBook(book: book!, completion: {() -> () in return})
         }
         
-        noteCollectionView?.reloadData()
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+        noteCollectionView?.reloadData()
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {

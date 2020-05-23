@@ -26,6 +26,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         noteCollectionView.delegate = self
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
+        setCollectionViewLayout()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +52,11 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         cell.backgroundColor = lightGray
         cell.isSelectedNow = false
         return cell
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        setCollectionViewLayout()
+        noteCollectionView.reloadData()
     }
     
     @IBAction func deleteCellsButton(_ sender: UIButton) {
@@ -94,9 +100,31 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
             cell.backgroundColor = darkGray
         }
     }
+    
+    private func setCollectionViewLayout() {
+        var size = UIScreen.main.bounds.width - 40
+        if UIDevice.current.orientation.isLandscape {
+            size = (UIScreen.main.bounds.height / 2 ) - 30
+            if UIDevice.current.hasNotch {
+                size -= 40
+            }
+        }
+        let cellSize = CGSize(width: size, height: 50)
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = cellSize
+        noteCollectionView.setCollectionViewLayout(layout, animated: true)
+    }
 }
 
 class NoteCell : UICollectionViewCell {
     @IBOutlet weak var noteLabel: UILabel!
     var isSelectedNow = false
+}
+
+// source: https://medium.com/@cafielo/how-to-detect-notch-screen-in-swift-56271827625d
+extension UIDevice {
+    var hasNotch: Bool {
+        let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        return bottom > 0
+    }
 }
