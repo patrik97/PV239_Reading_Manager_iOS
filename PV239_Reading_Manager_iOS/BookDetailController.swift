@@ -24,9 +24,12 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         super.viewDidLoad()
         noteCollectionView.dataSource = self
         noteCollectionView.delegate = self
+        let size = UIScreen.main.bounds.width - 50
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: size, height: 100)
+        noteCollectionView.setCollectionViewLayout(layout, animated: true)
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
-        setCollectionViewLayout()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,6 +52,9 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         }
         
         cell.noteLabel.text = book?.notes[indexPath.row].note
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd. MM. yy"
+        formatter.string(from: book?.notes[indexPath.row].added ?? Date())
         cell.backgroundColor = lightGray
         cell.isSelectedNow = false
         return cell
@@ -102,14 +108,16 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func setCollectionViewLayout() {
-        var size = UIScreen.main.bounds.width - 40
+        var size = UIScreen.main.bounds.width - 50
         if UIDevice.current.orientation.isLandscape {
             size = (UIScreen.main.bounds.height / 2 ) - 30
             if UIDevice.current.hasNotch {
-                size -= 40
+                size -= 50
             }
+        } else {
+            size = UIScreen.main.bounds.height - 50
         }
-        let cellSize = CGSize(width: size, height: 50)
+        let cellSize = CGSize(width: size, height: 100)
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = cellSize
         noteCollectionView.setCollectionViewLayout(layout, animated: true)
@@ -118,6 +126,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
 
 class NoteCell : UICollectionViewCell {
     @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     var isSelectedNow = false
 }
 

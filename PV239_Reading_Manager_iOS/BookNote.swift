@@ -10,5 +10,5 @@ import Foundation
 
 struct BookNote: Codable {
     var note: String
-    var added: Date
+    let added: Date
 }

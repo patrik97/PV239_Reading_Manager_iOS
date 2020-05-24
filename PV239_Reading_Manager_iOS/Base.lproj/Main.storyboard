@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -250,37 +251,49 @@
                                 <rect key="frame" x="20" y="277.5" width="374" height="535.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nUT-el-mxg">
-                                    <size key="itemSize" width="175" height="100"/>
+                                    <size key="itemSize" width="371" height="101"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" semanticContentAttribute="forceLeftToRight" reuseIdentifier="bookNoteCell" id="kMw-Ag-b6U" customClass="NoteCell" customModule="PV239_Reading_Manager_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="175" height="100"/>
+                                        <rect key="frame" x="1.5" y="0.0" width="371" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="175" height="100"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8M2-XF-FJ6">
+                                            <rect key="frame" x="0.0" y="0.0" width="371" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJF-w0-raH">
-                                                    <rect key="frame" x="10" y="5" width="155" height="90"/>
+                                                    <rect key="frame" x="10" y="36" width="351" height="60"/>
                                                     <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="v2y-cQ-cNd"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20. 5. 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7H-pF-hgQ">
+                                                    <rect key="frame" x="18" y="8" width="69.5" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                        </view>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="AJF-w0-raH" secondAttribute="trailing" constant="10" id="A0w-ef-ebb"/>
+                                                <constraint firstAttribute="bottom" secondItem="AJF-w0-raH" secondAttribute="bottom" constant="5" id="DuN-dz-8V7"/>
+                                                <constraint firstItem="M7H-pF-hgQ" firstAttribute="top" secondItem="8M2-XF-FJ6" secondAttribute="topMargin" id="KfI-aH-c2K"/>
+                                                <constraint firstItem="AJF-w0-raH" firstAttribute="leading" secondItem="8M2-XF-FJ6" secondAttribute="leading" constant="10" id="X3v-Ed-eyO"/>
+                                                <constraint firstItem="M7H-pF-hgQ" firstAttribute="leading" secondItem="8M2-XF-FJ6" secondAttribute="leadingMargin" constant="10" id="XLf-nY-asC"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="AJF-w0-raH" secondAttribute="bottom" constant="5" id="DuN-dz-8V7"/>
-                                            <constraint firstItem="AJF-w0-raH" firstAttribute="top" secondItem="kMw-Ag-b6U" secondAttribute="top" constant="5" id="X4g-EW-MHN"/>
-                                            <constraint firstItem="AJF-w0-raH" firstAttribute="leading" secondItem="kMw-Ag-b6U" secondAttribute="leading" constant="10" id="lEL-IS-Fd8"/>
-                                            <constraint firstAttribute="trailing" secondItem="AJF-w0-raH" secondAttribute="trailing" constant="10" id="smh-bj-S5b"/>
-                                        </constraints>
+                                        <size key="customSize" width="371" height="101"/>
                                         <connections>
+                                            <outlet property="dateLabel" destination="M7H-pF-hgQ" id="gYx-BZ-NLO"/>
                                             <outlet property="noteLabel" destination="AJF-w0-raH" id="O1i-0K-Wsa"/>
                                         </connections>
                                     </collectionViewCell>
