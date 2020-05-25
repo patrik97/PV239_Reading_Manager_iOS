@@ -19,6 +19,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     var type: String = ""
     let lightGray = UIColor.systemGray5
     let darkGray = UIColor.systemGray2
+    @IBOutlet weak var bookImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,14 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         noteCollectionView.setCollectionViewLayout(layout, animated: true)
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
+        let imageUrl = book?.imageUrl ?? "";
+        if (imageUrl != "") {
+            let url = URL(string: imageUrl)
+            let data = try? Data(contentsOf: url!)
+            bookImage.image = UIImage(data: data!)
+        } else {
+            bookImage.image = UIImage(systemName: "book")
+       }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

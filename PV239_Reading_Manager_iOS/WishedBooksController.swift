@@ -12,6 +12,16 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
     var wishedBooks: [Book] = []
     @IBOutlet weak var wishlistTableView: UITableView!
     
+    @IBAction func editPressed(_ sender: UIButton) {
+        if (wishlistTableView.isEditing) {
+            sender.setTitle("Edit", for: UIControl.State.normal)
+            wishlistTableView.setEditing(false, animated: true)
+        } else {
+            sender.setTitle("Done", for: UIControl.State.normal)
+            wishlistTableView.setEditing(true, animated: true)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         LocalStorageManager.shared.loadWishedBooks(completion: {(books: [Book]) -> () in wishedBooks = books})
@@ -63,6 +73,16 @@ extension WishedBooksController: UITableViewDataSource {
         let book = wishedBooks[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
+        
+        let imageUrl = book.smallImageUrl ?? "";
+        if (imageUrl != "") {
+            let url = URL(string: imageUrl)
+            let data = try? Data(contentsOf: url!)
+            cell.imageView?.image = UIImage(data: data!)
+        } else {
+            cell.imageView?.image = UIImage(systemName: "book")
+        }
+        
         return cell
     }
     
@@ -85,5 +105,16 @@ extension WishedBooksController: UITableViewDataSource {
         complete.backgroundColor = UIColor.blue
 
         return [delete, complete]
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = wishedBooks[sourceIndexPath.row]
+        wishedBooks.remove(at: sourceIndexPath.row)
+        wishedBooks.insert(itemToMove, at: destinationIndexPath.row)
+        LocalStorageManager.shared.saveWishedBooks(books: wishedBooks, completion: {() -> () in return})
     }
 }

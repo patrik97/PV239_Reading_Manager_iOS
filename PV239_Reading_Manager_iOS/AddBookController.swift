@@ -20,6 +20,8 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
     var elementName: String = String()
     var bookTitle = String()
     var bookAuthor = String()
+    var bookImageUrl = String()
+    var bookSmallImageUrl = String()
     var bookId = Int()
     var type = String()
     @IBOutlet weak var searchBar: UISearchBar!
@@ -104,6 +106,8 @@ extension AddBookController: XMLParserDelegate {
         if elementName == "best_book" {
             bookTitle = String()
             bookAuthor = String()
+            bookImageUrl = String()
+            bookSmallImageUrl = String()
         }
 
         self.elementName = elementName
@@ -112,7 +116,7 @@ extension AddBookController: XMLParserDelegate {
     // 2
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "best_book" {
-            let book = Book(id: bookId, author: bookAuthor, title: bookTitle)
+            let book = Book(id: bookId, author: bookAuthor, title: bookTitle, smallImageUrl: bookSmallImageUrl, imageUrl: bookImageUrl)
             books.append(book)
         }
     }
@@ -128,6 +132,10 @@ extension AddBookController: XMLParserDelegate {
                 bookTitle += data
             } else if self.elementName == "name" {
                 bookAuthor += data
+            } else if self.elementName == "image_url" {
+                bookImageUrl += data
+            } else if self.elementName == "small_image_url" {
+                bookSmallImageUrl += data
             }
         }
     }

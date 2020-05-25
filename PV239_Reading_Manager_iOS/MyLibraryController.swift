@@ -12,6 +12,19 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
     var myBooks: [Book] = []
     @IBOutlet weak var myLibraryTableView: UITableView!
     
+//    @IBAction func editClicked(_ sender: UIButton) {
+//        myLibraryTableView.isEditing = true;
+//    }
+
+    @IBAction func editPressed(_ sender: UIButton) {
+        if (myLibraryTableView.isEditing) {
+            sender.setTitle("Edit", for: UIControl.State.normal)
+            myLibraryTableView.setEditing(false, animated: true)
+        } else {
+            sender.setTitle("Done", for: UIControl.State.normal)
+            myLibraryTableView.setEditing(true, animated: true)
+        }
+    }
     
     override func viewDidLoad() {
         LocalStorageManager.shared.loadLibraryBooks(completion: {(books: [Book]) -> () in myBooks = books})
@@ -44,10 +57,6 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
         myLibraryTableView.reloadData()
         LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
 }
     
 extension MyLibraryController: UITableViewDataSource {
@@ -65,6 +74,15 @@ extension MyLibraryController: UITableViewDataSource {
         let book = myBooks[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
+        
+        let imageUrl = book.smallImageUrl ?? "";
+        if (imageUrl != "") {
+            let url = URL(string: imageUrl)
+            let data = try? Data(contentsOf: url!)
+            cell.imageView?.image = UIImage(data: data!)
+        } else {
+            cell.imageView?.image = UIImage(systemName: "book")
+        }
         return cell
     }
     
@@ -74,5 +92,16 @@ extension MyLibraryController: UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
             LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
         }
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = myBooks[sourceIndexPath.row]
+        myBooks.remove(at: sourceIndexPath.row)
+        myBooks.insert(itemToMove, at: destinationIndexPath.row)
+        LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
     }
 }

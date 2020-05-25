@@ -14,11 +14,19 @@ class Book: Codable, Equatable {
     let title: String
     var notes = [BookNote]()
     var state = BookState.notOwned
+    let smallImageUrl: String?
+    let imageUrl: String?
     
-    init(id: Int, author: String, title: String) {
+    init(id: Int, author: String, title: String, smallImageUrl: String?, imageUrl: String?) {
         self.id = id;
         self.author = author;
         self.title = title;
+        self.smallImageUrl = smallImageUrl
+        self.imageUrl = imageUrl
+    }
+    
+    convenience init(id: Int, author: String, title: String) {
+        self.init(id: id, author: author, title: title, smallImageUrl: nil, imageUrl: nil)
     }
     
     /*
