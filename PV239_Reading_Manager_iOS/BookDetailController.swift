@@ -8,10 +8,60 @@
 
 import UIKit
 
+class CellClass: UITableViewCell {
+    
+}
+
 class BookDetailController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    let transparentView = UIView();
+    let tableView = UITableView();
+    let bookStates = ["Unread", "Reading", "Readed"]
+    @IBOutlet weak var bookStateLabel: UILabel!
+    
+    @IBAction func addToLibrary(_ sender: UIButton) {
+        if (type == "library") {
+            addTransparentView(frames: moveToLibraryButton.frame)
+        } else {
+            LocalStorageManager.shared.moveBookToLibrary(book: self.book!, completion: {() -> () in
+                self.navigationController?.popViewController(animated: true)
+            })
+        }
+    }
+    
+    func addTransparentView(frames: CGRect) {
+        let window = UIApplication.shared.keyWindow
+        transparentView.frame = window?.frame ?? self.view.frame
+        self.view.addSubview(transparentView)
+        
+        tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
+        self.view.addSubview(tableView)
+        
+        tableView.layer.cornerRadius = 5
+        
+        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        tableView.reloadData()
+        
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
+        transparentView.addGestureRecognizer(tapgesture)
+        transparentView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseOut, animations: {
+            self.transparentView.alpha = 0.8
+            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: CGFloat(self.bookStates.count * 50))
+        }, completion: nil)
+    }
+    
+    @objc func removeTransparentView() {
+        let frames = moveToLibraryButton.frame
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseOut, animations: {
+            self.transparentView.alpha = 0
+            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: 0)
+        }, completion: nil)
+    }
+    
+    @IBOutlet weak var moveToLibraryButton: UIButton!
     @IBOutlet weak var noteCollectionView: UICollectionView!
     @IBOutlet weak var bookTitle: UILabel!
-    @IBOutlet var cellGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var bookAuthor: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     var book: Book?
@@ -23,14 +73,25 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CellClass.self, forCellReuseIdentifier: "cell")
         noteCollectionView.dataSource = self
         noteCollectionView.delegate = self
+        
+        if (type == "library") {
+            moveToLibraryButton.setTitle("Change book state", for: UIControl.State.normal)
+        } else {
+            moveToLibraryButton.setTitle("Move Book to Library", for: UIControl.State.normal)
+        }
+        
         let size = UIScreen.main.bounds.width - 50
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: size, height: 100)
         noteCollectionView.setCollectionViewLayout(layout, animated: true)
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
+        bookStateLabel.text = book?.state.description
         let imageUrl = book?.imageUrl ?? "";
         if (imageUrl != "") {
             let url = URL(string: imageUrl)
@@ -145,4 +206,30 @@ extension UIDevice {
         let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         return bottom > 0
     }
+}
+
+extension BookDetailController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return bookStates.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = bookStates[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.book!.state = BookState(rawValue: bookStates[indexPath.row])!
+        bookStateLabel.text = bookStates[indexPath.row]
+        LocalStorageManager.shared.updateLibraryBook(book: self.book!, completion: {() -> () in
+            removeTransparentView()
+        })
+    }
+    
+    
 }

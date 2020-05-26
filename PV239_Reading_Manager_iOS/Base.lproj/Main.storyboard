@@ -315,22 +315,39 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-mV-Md0">
-                                <rect key="frame" x="367" y="384" width="26.5" height="22"/>
+                                <rect key="frame" x="366" y="384" width="26.5" height="22"/>
                                 <state key="normal" title="t" image="trash" catalog="system"/>
                                 <connections>
                                     <action selector="deleteCellsButton:" destination="Dgf-7b-ipa" eventType="touchUpInside" id="aIw-Ko-dva"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-Ae-nin">
-                                <rect key="frame" x="132" y="109" width="151" height="196"/>
+                                <rect key="frame" x="131" y="117" width="151" height="196"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqH-X8-IRN">
+                                <rect key="frame" x="249" y="421" width="145" height="30"/>
+                                <state key="normal" title="Move book to Library"/>
+                                <connections>
+                                    <action selector="addToLibrary:" destination="Dgf-7b-ipa" eventType="primaryActionTriggered" id="HQR-cB-lMb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-Xx-Qm2">
+                                <rect key="frame" x="20" y="425" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="NUI-5S-CYr" firstAttribute="top" secondItem="PSc-Xx-Qm2" secondAttribute="bottom" constant="6" id="1Y2-hS-qr4"/>
                             <constraint firstItem="HsS-Nq-1ee" firstAttribute="top" secondItem="N1A-Ae-nin" secondAttribute="bottom" constant="20" id="2hW-Ix-QYO"/>
                             <constraint firstItem="fgu-mV-Md0" firstAttribute="top" secondItem="z9e-Ln-0bb" secondAttribute="bottom" constant="30" id="2hp-K0-tvW"/>
                             <constraint firstItem="HsS-Nq-1ee" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="2nH-Fc-xQu"/>
+                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="WqH-X8-IRN" secondAttribute="trailing" constant="20" id="97w-Rv-n6I"/>
                             <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="fgu-mV-Md0" secondAttribute="trailing" constant="20" id="Ds0-we-U5m"/>
+                            <constraint firstItem="NUI-5S-CYr" firstAttribute="top" secondItem="WqH-X8-IRN" secondAttribute="bottom" constant="15" id="Nb0-s8-xK8"/>
+                            <constraint firstItem="PSc-Xx-Qm2" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="OJi-XQ-3hp"/>
                             <constraint firstItem="N1A-Ae-nin" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="Pe4-mi-dB0"/>
                             <constraint firstItem="N1A-Ae-nin" firstAttribute="top" secondItem="rFN-uC-W40" secondAttribute="top" constant="20" id="Svo-fO-FiZ"/>
                             <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="z9e-Ln-0bb" secondAttribute="trailing" constant="20" id="Zio-Nx-WhK"/>
@@ -354,8 +371,10 @@
                     <connections>
                         <outlet property="bookAuthor" destination="HsS-Nq-1ee" id="YEf-QG-yZF"/>
                         <outlet property="bookImage" destination="N1A-Ae-nin" id="kLY-OQ-lWf"/>
+                        <outlet property="bookStateLabel" destination="PSc-Xx-Qm2" id="aZq-sK-1jX"/>
                         <outlet property="bookTitle" destination="z9e-Ln-0bb" id="pYl-Vz-OcQ"/>
                         <outlet property="deleteButton" destination="fgu-mV-Md0" id="Cja-AN-Hnb"/>
+                        <outlet property="moveToLibraryButton" destination="WqH-X8-IRN" id="m6h-zF-kl6"/>
                         <outlet property="noteCollectionView" destination="NUI-5S-CYr" id="lhV-xe-WmG"/>
                     </connections>
                 </viewController>
@@ -371,60 +390,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lnw-34-lyB">
-                                <rect key="frame" x="20" y="20" width="374" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="zAZ-bq-MRv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textEditedAction:" destination="e93-cx-Vd7" eventType="editingChanged" id="82x-u1-yIe"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100/100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgE-RX-Mla">
-                                <rect key="frame" x="200" y="62" width="194" height="21"/>
+                                <rect key="frame" x="332" y="308" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JE-un-66p">
+                                <rect key="frame" x="121" y="308" width="62" height="30"/>
+                                <state key="normal" title="Add note"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="e93-cx-Vd7" eventType="touchUpInside" id="26J-Y0-CjX"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add your note" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k65-PB-hIU">
+                                <rect key="frame" x="20" y="30" width="374" height="268"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="268" id="dWh-t3-08p"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-i6-fFp">
-                                <rect key="frame" x="20" y="152" width="92" height="30"/>
+                                <rect key="frame" x="20" y="308" width="48" height="30"/>
                                 <state key="normal" title="Cancel">
-                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="cancelButton:" destination="e93-cx-Vd7" eventType="touchUpInside" id="XUG-qE-aEa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JE-un-66p">
-                                <rect key="frame" x="190" y="152" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveButton:" destination="e93-cx-Vd7" eventType="touchUpInside" id="26J-Y0-CjX"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" secondItem="lnw-34-lyB" secondAttribute="trailing" constant="20" id="6Uk-vC-wtn"/>
-                            <constraint firstItem="9NG-i6-fFp" firstAttribute="top" secondItem="lnw-34-lyB" secondAttribute="bottom" constant="100" id="Dck-UF-afx"/>
+                            <constraint firstItem="9JE-un-66p" firstAttribute="leading" secondItem="9NG-i6-fFp" secondAttribute="trailing" constant="53" id="3bg-A1-ef5"/>
+                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" secondItem="SgE-RX-Mla" secondAttribute="trailing" constant="20" id="4hE-iE-cz9"/>
                             <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" secondItem="SgE-RX-Mla" secondAttribute="trailing" constant="20" id="RHs-8z-NcR"/>
-                            <constraint firstItem="9JE-un-66p" firstAttribute="centerX" secondItem="lLp-Pl-Yzq" secondAttribute="centerX" id="VeW-Or-vbb"/>
-                            <constraint firstItem="9JE-un-66p" firstAttribute="leading" secondItem="9NG-i6-fFp" secondAttribute="trailing" constant="78" id="XEf-Xu-QGN"/>
-                            <constraint firstItem="SgE-RX-Mla" firstAttribute="top" secondItem="lnw-34-lyB" secondAttribute="bottom" constant="10" id="a8H-GN-GSO"/>
-                            <constraint firstItem="9NG-i6-fFp" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="b3v-E5-Z13"/>
-                            <constraint firstItem="lnw-34-lyB" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="exh-GG-pBF"/>
-                            <constraint firstItem="9JE-un-66p" firstAttribute="top" secondItem="lnw-34-lyB" secondAttribute="bottom" constant="100" id="itb-VW-dso"/>
-                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SgE-RX-Mla" secondAttribute="trailing" id="nJT-Tj-0Wo"/>
-                            <constraint firstItem="SgE-RX-Mla" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="200" id="o3C-Hj-wMa"/>
-                            <constraint firstItem="lnw-34-lyB" firstAttribute="top" secondItem="oDQ-ep-pDv" secondAttribute="top" constant="20" id="xV9-gL-QEm"/>
+                            <constraint firstItem="k65-PB-hIU" firstAttribute="top" secondItem="oDQ-ep-pDv" secondAttribute="top" constant="30" id="Sal-36-Jyv"/>
+                            <constraint firstItem="9NG-i6-fFp" firstAttribute="top" secondItem="k65-PB-hIU" secondAttribute="bottom" constant="10" id="VtW-mc-Shf"/>
+                            <constraint firstItem="k65-PB-hIU" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="Xap-zJ-vpp"/>
+                            <constraint firstItem="9JE-un-66p" firstAttribute="top" secondItem="k65-PB-hIU" secondAttribute="bottom" constant="10" id="Zei-ae-DVR"/>
+                            <constraint firstItem="k65-PB-hIU" firstAttribute="top" secondItem="oDQ-ep-pDv" secondAttribute="top" constant="30" id="aGA-51-pxh"/>
+                            <constraint firstItem="oDQ-ep-pDv" firstAttribute="trailing" secondItem="k65-PB-hIU" secondAttribute="trailing" constant="20" id="gp7-Zw-qow"/>
+                            <constraint firstItem="9NG-i6-fFp" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="iie-Am-9Ez"/>
+                            <constraint firstItem="k65-PB-hIU" firstAttribute="leading" secondItem="oDQ-ep-pDv" secondAttribute="leading" constant="20" id="ioK-tD-Co8"/>
+                            <constraint firstItem="SgE-RX-Mla" firstAttribute="top" secondItem="k65-PB-hIU" secondAttribute="bottom" constant="10" id="sEs-1H-jgr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oDQ-ep-pDv"/>
                     </view>
                     <connections>
                         <outlet property="counterLabel" destination="SgE-RX-Mla" id="7oZ-1N-h50"/>
-                        <outlet property="noteText" destination="lnw-34-lyB" id="16Z-9z-Yno"/>
+                        <outlet property="noteTextField" destination="k65-PB-hIU" id="M5c-d8-Mbz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch9-Uu-Zex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

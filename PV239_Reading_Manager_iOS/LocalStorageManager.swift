@@ -113,7 +113,7 @@ class LocalStorageManager: StorageManagerProtocol {
     func moveBookToLibrary(book: Book, completion: () -> ()) {
         if let index = wishedBooks.firstIndex(of: book) {
             wishedBooks.remove(at: index)
-            book.state = BookState.notOwned
+            book.state = BookState.unread
             libraryBooks.append(book)
             saveLibraryBooks(books: libraryBooks, completion: {() -> () in return})
             saveWishedBooks(books: wishedBooks, completion: {() -> () in return})

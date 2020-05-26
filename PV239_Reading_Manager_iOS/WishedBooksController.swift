@@ -48,6 +48,7 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
     }
     
     func addBook(book: Book) {
+        book.state = BookState.notOwned
         wishedBooks.append(book)
         wishlistTableView.reloadData()
         LocalStorageManager.shared.saveWishedBooks(books: wishedBooks, completion: {() -> () in return})

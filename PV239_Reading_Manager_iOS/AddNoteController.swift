@@ -10,8 +10,8 @@ import UIKit
 
 private let LIBRARY_BOOKS_KEY = "library_books"
 
-class AddNoteController: UIViewController {
-    @IBOutlet weak var noteText: UITextField!
+class AddNoteController: UIViewController, UITextViewDelegate {
+    @IBOutlet weak var noteTextField: UITextView!
     @IBOutlet weak var counterLabel: UILabel!
     var book: Book?
     weak var noteCollectionView: UICollectionView?
@@ -21,25 +21,38 @@ class AddNoteController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         counterLabel.text = "0/100";
+        noteTextField.delegate = self
+        let borderGray = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        noteTextField.layer.borderColor = borderGray.cgColor
+        noteTextField.layer.borderWidth = 0.5
+        noteTextField.layer.cornerRadius = 5
+        noteTextField.text = "Add note text"
+        noteTextField.textColor = UIColor.lightGray
     }
     
-
-    @IBAction func textEditedAction(_ sender: UITextField) {
-        let currentTextSize = noteText.text?.count
-        counterLabel.text = "\(currentTextSize ?? 0)" + "/100"
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if noteTextField.textColor == UIColor.lightGray {
+            noteTextField.text = nil
+            noteTextField.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let currentTextSize = noteTextField.text.count
+        counterLabel.text = "\(currentTextSize)" + "/100"
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-        let newNoteText = noteText.text
+        let newNoteText = noteTextField.text
         if newNoteText?.count ?? 0 < 1 {
-            alert(title: book?.author ?? "AAA", message: "Note text cannot be empty")
+            alert(title: "Error", message: "Note text cannot be empty")
             return
         }
         if newNoteText?.count ?? 0 > 100 {
             alert(title: "Note was not saved", message: "Note text can have a maximum of 100 characters")
             return
         }
-        book?.addNote(note: noteText.text ?? "")
+        book?.addNote(note: noteTextField.text ?? "")
         
         if (type == "library") {
             LocalStorageManager.shared.updateLibraryBook(book: book!, completion: {() -> () in return})

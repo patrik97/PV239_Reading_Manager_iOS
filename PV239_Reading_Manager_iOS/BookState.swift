@@ -8,9 +8,15 @@
 
 import Foundation
 
-enum BookState: String, Codable {
-    case unread
-    case read
-    case reading
-    case notOwned
+enum BookState: String, CaseIterable, Codable {
+    case unread = "Unread"
+    case reading = "Reading"
+    case readed = "Readed"
+    case notOwned = "Not Owned"
+    
+    var description: String {
+        get {
+            return self.rawValue
+        }
+    }
 }

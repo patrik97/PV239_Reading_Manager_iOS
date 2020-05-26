@@ -53,6 +53,7 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
     }
     
     func addBook(book: Book) {
+        book.state = BookState.unread
         myBooks.append(book)
         myLibraryTableView.reloadData()
         LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
