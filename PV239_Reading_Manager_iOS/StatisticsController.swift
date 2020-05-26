@@ -33,11 +33,17 @@ class StatisticsController: UIViewController, ChartViewDelegate {
         var entries = [PieChartDataEntry]()
         
         LocalStorageManager.shared.loadAllBooks(completion: { (libBooks, wishBooks) in
-            libraryBooks = libBooks
-            wishedBooks = wishBooks
+            var allBooks = libBooks + wishBooks
             
-            entries.append(PieChartDataEntry(value: Double(libraryBooks.count), label: "Owned books"))
-            entries.append(PieChartDataEntry(value: Double(wishedBooks.count), label: "Wished books"))
+            let notOwnedBooks = allBooks.filter{ $0.state == BookState.notOwned }
+            let readedBooks = allBooks.filter{ $0.state == BookState.readed }
+            let readingBooks = allBooks.filter{ $0.state == BookState.reading }
+            let unreadBooks = allBooks.filter{ $0.state == BookState.unread }
+            
+            entries.append(PieChartDataEntry(value: Double(notOwnedBooks.count), label: "Wished books"))
+            entries.append(PieChartDataEntry(value: Double(readedBooks.count), label: "Readed books"))
+            entries.append(PieChartDataEntry(value: Double(unreadBooks.count), label: "Unreaded books"))
+            entries.append(PieChartDataEntry(value: Double(readingBooks.count), label: "Reading books"))
             
             let set = PieChartDataSet(entries: entries)
             set.colors = ChartColorTemplates.joyful()
