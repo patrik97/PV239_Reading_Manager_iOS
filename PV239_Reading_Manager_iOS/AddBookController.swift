@@ -52,6 +52,8 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
                             self.booksTable.reloadData()
                         }
             }
+        } else {
+            self.booksTable.reloadData()
         }
     }
     
@@ -73,6 +75,14 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
         let book = books[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
+        let imageUrl = book.smallImageUrl ?? "";
+        if (imageUrl != "") {
+            let url = URL(string: imageUrl)
+            let data = try? Data(contentsOf: url!)
+            cell.imageView?.image = UIImage(data: data!)
+        } else {
+            cell.imageView?.image = UIImage(systemName: "book")
+        }
         return cell
     }
     
@@ -92,10 +102,20 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
 }
 
 extension AddBookController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchText)
+        perform(#selector(self.reload(_:)), with: searchText, afterDelay: 0.75)
+    }
+
     func
         searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         books = []
         fetchBooks(query: searchBar.text ?? "")
+    }
+    
+    @objc func reload(_ searchText: String) {
+        books = []
+        fetchBooks(query: searchText)
     }
 }
 
