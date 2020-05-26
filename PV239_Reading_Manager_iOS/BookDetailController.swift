@@ -91,7 +91,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         noteCollectionView.setCollectionViewLayout(layout, animated: true)
         bookTitle.text = book?.title
         bookAuthor.text = book?.author
-        bookStateLabel.text = book?.state.description
+        setDescription()
         let imageUrl = book?.imageUrl ?? "";
         if (imageUrl != "") {
             let url = URL(string: imageUrl)
@@ -192,6 +192,19 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         layout.itemSize = cellSize
         noteCollectionView.setCollectionViewLayout(layout, animated: true)
     }
+    
+    private func setDescription() {
+        switch book!.state {
+        case .notOwned:
+            bookStateLabel.text = "Not owned"
+        case .unread:
+            bookStateLabel.text = "Not read yet"
+        case .reading:
+            bookStateLabel.text = "Now reading"
+        case .readed:
+            bookStateLabel.text = "Already read"
+        }
+    }
 }
 
 class NoteCell : UICollectionViewCell {
@@ -225,7 +238,7 @@ extension BookDetailController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.book!.state = BookState(rawValue: bookStates[indexPath.row])!
-        bookStateLabel.text = bookStates[indexPath.row]
+        setDescription()
         LocalStorageManager.shared.updateLibraryBook(book: self.book!, completion: {() -> () in
             removeTransparentView()
         })

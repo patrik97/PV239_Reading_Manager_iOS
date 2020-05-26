@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kXB-6D-h8W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kXB-6D-h8W">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -244,26 +244,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9e-Ln-0bb">
-                                <rect key="frame" x="20" y="377" width="374" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="70T-1I-CXz"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9e-Ln-0bb">
+                                <rect key="frame" x="20" y="365.5" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Author" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsS-Nq-1ee">
-                                <rect key="frame" x="20" y="325" width="374" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="95" id="EbV-e9-nWL"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsS-Nq-1ee">
+                                <rect key="frame" x="20" y="314" width="374" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NUI-5S-CYr">
-                                <rect key="frame" x="20" y="452" width="374" height="361"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NUI-5S-CYr">
+                                <rect key="frame" x="20" y="493" width="374" height="320"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nUT-el-mxg">
                                     <size key="itemSize" width="371" height="101"/>
@@ -314,50 +308,59 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-mV-Md0">
-                                <rect key="frame" x="366" y="384" width="26.5" height="22"/>
-                                <state key="normal" title="t" image="trash" catalog="system"/>
-                                <connections>
-                                    <action selector="deleteCellsButton:" destination="Dgf-7b-ipa" eventType="touchUpInside" id="aIw-Ko-dva"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-Ae-nin">
-                                <rect key="frame" x="131" y="117" width="151" height="196"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-Ae-nin">
+                                <rect key="frame" x="131.5" y="98" width="151" height="196"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="196" id="cCR-yg-ZTf"/>
+                                    <constraint firstAttribute="width" constant="151" id="pxO-E6-ZHi"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqH-X8-IRN">
-                                <rect key="frame" x="249" y="421" width="145" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqH-X8-IRN">
+                                <rect key="frame" x="134.5" y="454" width="145" height="30"/>
                                 <state key="normal" title="Move book to Library"/>
                                 <connections>
                                     <action selector="addToLibrary:" destination="Dgf-7b-ipa" eventType="primaryActionTriggered" id="HQR-cB-lMb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-Xx-Qm2">
-                                <rect key="frame" x="20" y="425" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-Xx-Qm2">
+                                <rect key="frame" x="20" y="426.5" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-mV-Md0">
+                                <rect key="frame" x="367.5" y="454" width="26.5" height="22"/>
+                                <state key="normal" title="t" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteCellsButton:" destination="Dgf-7b-ipa" eventType="touchUpInside" id="aIw-Ko-dva"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="NUI-5S-CYr" firstAttribute="top" secondItem="PSc-Xx-Qm2" secondAttribute="bottom" constant="6" id="1Y2-hS-qr4"/>
-                            <constraint firstItem="HsS-Nq-1ee" firstAttribute="top" secondItem="N1A-Ae-nin" secondAttribute="bottom" constant="20" id="2hW-Ix-QYO"/>
-                            <constraint firstItem="fgu-mV-Md0" firstAttribute="top" secondItem="z9e-Ln-0bb" secondAttribute="bottom" constant="30" id="2hp-K0-tvW"/>
                             <constraint firstItem="HsS-Nq-1ee" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="2nH-Fc-xQu"/>
-                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="WqH-X8-IRN" secondAttribute="trailing" constant="20" id="97w-Rv-n6I"/>
-                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="fgu-mV-Md0" secondAttribute="trailing" constant="20" id="Ds0-we-U5m"/>
-                            <constraint firstItem="NUI-5S-CYr" firstAttribute="top" secondItem="WqH-X8-IRN" secondAttribute="bottom" constant="15" id="Nb0-s8-xK8"/>
-                            <constraint firstItem="PSc-Xx-Qm2" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="OJi-XQ-3hp"/>
-                            <constraint firstItem="N1A-Ae-nin" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="Pe4-mi-dB0"/>
-                            <constraint firstItem="N1A-Ae-nin" firstAttribute="top" secondItem="rFN-uC-W40" secondAttribute="top" constant="20" id="Svo-fO-FiZ"/>
+                            <constraint firstItem="N1A-Ae-nin" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="3b2-hc-4rT"/>
+                            <constraint firstItem="WqH-X8-IRN" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="84L-3e-7Ch"/>
+                            <constraint firstItem="fgu-mV-Md0" firstAttribute="top" secondItem="PSc-Xx-Qm2" secondAttribute="bottom" constant="7" id="A8q-21-bk7"/>
+                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="PSc-Xx-Qm2" secondAttribute="trailing" constant="20" id="BRY-rT-I4M"/>
+                            <constraint firstItem="z9e-Ln-0bb" firstAttribute="top" secondItem="HsS-Nq-1ee" secondAttribute="bottom" constant="20" id="KXZ-5F-Muu"/>
+                            <constraint firstItem="NUI-5S-CYr" firstAttribute="bottom" secondItem="rFN-uC-W40" secondAttribute="bottom" id="L9M-Wx-plv"/>
+                            <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="fgu-mV-Md0" secondAttribute="trailing" constant="20" id="Pfd-IU-PKg"/>
+                            <constraint firstItem="HsS-Nq-1ee" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="Pst-P9-TPR"/>
+                            <constraint firstItem="WqH-X8-IRN" firstAttribute="top" secondItem="PSc-Xx-Qm2" secondAttribute="bottom" constant="7" id="Qzx-Vs-my7"/>
+                            <constraint firstItem="PSc-Xx-Qm2" firstAttribute="top" secondItem="z9e-Ln-0bb" secondAttribute="bottom" constant="25" id="UgF-IA-lfI"/>
+                            <constraint firstItem="PSc-Xx-Qm2" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="Y3e-3W-KEc"/>
                             <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="z9e-Ln-0bb" secondAttribute="trailing" constant="20" id="Zio-Nx-WhK"/>
+                            <constraint firstItem="HsS-Nq-1ee" firstAttribute="top" secondItem="N1A-Ae-nin" secondAttribute="bottom" constant="20" id="dE9-dT-Un4"/>
                             <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="NUI-5S-CYr" secondAttribute="trailing" constant="20" id="dFk-ro-2xL"/>
-                            <constraint firstItem="z9e-Ln-0bb" firstAttribute="top" secondItem="HsS-Nq-1ee" secondAttribute="bottom" constant="20" id="kUa-Xz-GyF"/>
+                            <constraint firstItem="z9e-Ln-0bb" firstAttribute="centerX" secondItem="Svb-vj-VdL" secondAttribute="centerX" id="fFU-kE-hXe"/>
+                            <constraint firstItem="PSc-Xx-Qm2" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="fSb-jA-eft"/>
+                            <constraint firstItem="NUI-5S-CYr" firstAttribute="top" secondItem="WqH-X8-IRN" secondAttribute="bottom" constant="9" id="j64-c1-0P2"/>
                             <constraint firstItem="NUI-5S-CYr" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="nue-Qb-wqC"/>
                             <constraint firstItem="rFN-uC-W40" firstAttribute="bottom" secondItem="NUI-5S-CYr" secondAttribute="bottom" id="pSY-Yw-YQM"/>
-                            <constraint firstItem="NUI-5S-CYr" firstAttribute="top" secondItem="fgu-mV-Md0" secondAttribute="bottom" constant="20" id="r4P-k6-oYT"/>
                             <constraint firstItem="z9e-Ln-0bb" firstAttribute="leading" secondItem="rFN-uC-W40" secondAttribute="leading" constant="20" id="tUL-Nj-Uet"/>
                             <constraint firstItem="rFN-uC-W40" firstAttribute="trailing" secondItem="HsS-Nq-1ee" secondAttribute="trailing" constant="20" id="vrn-ym-J5a"/>
+                            <constraint firstItem="N1A-Ae-nin" firstAttribute="top" secondItem="rFN-uC-W40" secondAttribute="top" constant="10" id="wXQ-eB-e4b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rFN-uC-W40"/>
                     </view>
@@ -564,15 +567,15 @@
             <point key="canvasLocation" x="-457" y="-10"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="book" catalog="system" width="64" height="50"/>
-        <image name="chart.pie" catalog="system" width="64" height="60"/>
-        <image name="heart" catalog="system" width="64" height="54"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="trash" catalog="system" width="60" height="64"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Yv5-DE-KJm"/>
         <segue reference="MVg-Hg-nfI"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="book" catalog="system" width="128" height="101"/>
+        <image name="chart.pie" catalog="system" width="128" height="121"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+    </resources>
 </document>
