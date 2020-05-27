@@ -104,7 +104,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
 extension AddBookController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchText)
-        perform(#selector(self.reload(_:)), with: searchText, afterDelay: 0.75)
+        perform(#selector(self.reload(_:)), with: searchText, afterDelay: 3)
     }
 
     func
