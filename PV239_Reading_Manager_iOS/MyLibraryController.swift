@@ -118,8 +118,13 @@ extension MyLibraryController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let itemToMove = visibleBooks[sourceIndexPath.row]
+        let originalDestinationItem = visibleBooks[destinationIndexPath.row]
+        let moveItemIndex = myBooks.firstIndex(of: itemToMove) ?? 0
+        let destinationItemIndex = myBooks.firstIndex(of: originalDestinationItem) ?? 0
         visibleBooks.remove(at: sourceIndexPath.row)
         visibleBooks.insert(itemToMove, at: destinationIndexPath.row)
+        myBooks.remove(at: moveItemIndex)
+        myBooks.insert(itemToMove, at: destinationItemIndex)
         LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
     }
 }

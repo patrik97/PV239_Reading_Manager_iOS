@@ -136,8 +136,14 @@ extension WishedBooksController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let itemToMove = visibleBooks[sourceIndexPath.row]
+        let originalDestinationItem = visibleBooks[destinationIndexPath.row]
+        let moveItemIndex = wishedBooks.firstIndex(of: itemToMove) ?? 0
+        let destinationItemIndex = wishedBooks.firstIndex(of: originalDestinationItem) ?? wishedBooks.count-1
+        print(moveItemIndex, destinationItemIndex)
         visibleBooks.remove(at: sourceIndexPath.row)
         visibleBooks.insert(itemToMove, at: destinationIndexPath.row)
+        wishedBooks.remove(at: moveItemIndex)
+        wishedBooks.insert(itemToMove, at: destinationItemIndex)
         LocalStorageManager.shared.saveWishedBooks(books: wishedBooks, completion: {() -> () in return})
     }
 }

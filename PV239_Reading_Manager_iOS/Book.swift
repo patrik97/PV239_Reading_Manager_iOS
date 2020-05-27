@@ -41,9 +41,6 @@ class Book: Codable, Equatable {
     }
     
     static func == (lhs: Book, rhs: Book) -> Bool {
-        if (lhs.id == rhs.id) {
-            return true
-        }
-        return false
+        return lhs.id == rhs.id && lhs.title == rhs.title && lhs.author == rhs.author
     }
 }
