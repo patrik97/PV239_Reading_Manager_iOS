@@ -139,7 +139,6 @@ extension WishedBooksController: UITableViewDataSource {
         let originalDestinationItem = visibleBooks[destinationIndexPath.row]
         let moveItemIndex = wishedBooks.firstIndex(of: itemToMove) ?? 0
         let destinationItemIndex = wishedBooks.firstIndex(of: originalDestinationItem) ?? wishedBooks.count-1
-        print(moveItemIndex, destinationItemIndex)
         visibleBooks.remove(at: sourceIndexPath.row)
         visibleBooks.insert(itemToMove, at: destinationIndexPath.row)
         wishedBooks.remove(at: moveItemIndex)
