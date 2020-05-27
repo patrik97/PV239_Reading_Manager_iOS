@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-EG-ssd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="WishedBookCell" textLabel="SY5-RD-VEf" detailTextLabel="SqJ-5O-Fni" style="IBUITableViewCellStyleSubtitle" id="COu-fZ-Xxw">
@@ -101,12 +101,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RQG-VB-DHy">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="wvo-FB-huW"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="RQG-VB-DHy" firstAttribute="leading" secondItem="B2e-vr-AFF" secondAttribute="leading" id="BnO-Dq-jSd"/>
+                            <constraint firstItem="RQG-VB-DHy" firstAttribute="top" secondItem="B2e-vr-AFF" secondAttribute="top" id="U1Z-sM-c1r"/>
                             <constraint firstItem="B2e-vr-AFF" firstAttribute="bottom" secondItem="zyW-EG-ssd" secondAttribute="bottom" id="Y9l-vC-0WP"/>
+                            <constraint firstItem="zyW-EG-ssd" firstAttribute="top" secondItem="RQG-VB-DHy" secondAttribute="bottom" id="cKH-VI-OKB"/>
+                            <constraint firstItem="RQG-VB-DHy" firstAttribute="trailing" secondItem="B2e-vr-AFF" secondAttribute="trailing" id="imP-kO-zwZ"/>
                             <constraint firstItem="zyW-EG-ssd" firstAttribute="leading" secondItem="B2e-vr-AFF" secondAttribute="leading" id="lLP-ge-n8J"/>
-                            <constraint firstItem="zyW-EG-ssd" firstAttribute="top" secondItem="B2e-vr-AFF" secondAttribute="top" id="pIE-Oc-yKp"/>
                             <constraint firstItem="B2e-vr-AFF" firstAttribute="trailing" secondItem="zyW-EG-ssd" secondAttribute="trailing" id="zaY-fj-b81"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B2e-vr-AFF"/>
@@ -131,12 +141,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="wishlistSearchBar" destination="RQG-VB-DHy" id="bjF-pt-Pzw"/>
                         <outlet property="wishlistTableView" destination="zyW-EG-ssd" id="hQs-Cs-BV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ylj-ow-dfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586" y="-27"/>
+            <point key="canvasLocation" x="1585.5072463768117" y="-27.455357142857142"/>
         </scene>
         <!--My Library-->
         <scene sceneID="osz-6k-fVU">
@@ -165,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g5R-jM-Ppt">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="MyBookCell" textLabel="YOg-7O-zcM" detailTextLabel="lcH-L2-gfp" imageView="ZLe-lR-142" rowHeight="134" style="IBUITableViewCellStyleSubtitle" id="RdR-px-DqE">
@@ -201,11 +212,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="CE6-tr-PSj">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="rY8-HK-vV8"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="CE6-tr-PSj" firstAttribute="leading" secondItem="cFx-AE-8uu" secondAttribute="leading" id="2rg-Rt-tAS"/>
                             <constraint firstItem="g5R-jM-Ppt" firstAttribute="leading" secondItem="cFx-AE-8uu" secondAttribute="leading" id="EKo-zf-nnP"/>
-                            <constraint firstItem="g5R-jM-Ppt" firstAttribute="top" secondItem="cFx-AE-8uu" secondAttribute="top" id="axs-Og-Fzl"/>
+                            <constraint firstItem="CE6-tr-PSj" firstAttribute="trailing" secondItem="cFx-AE-8uu" secondAttribute="trailing" id="G9y-ME-58s"/>
+                            <constraint firstItem="g5R-jM-Ppt" firstAttribute="top" secondItem="CE6-tr-PSj" secondAttribute="bottom" id="WQ7-mX-laL"/>
+                            <constraint firstItem="CE6-tr-PSj" firstAttribute="top" secondItem="cFx-AE-8uu" secondAttribute="top" id="jTE-4P-9nY"/>
                             <constraint firstItem="cFx-AE-8uu" firstAttribute="bottom" secondItem="g5R-jM-Ppt" secondAttribute="bottom" id="kyt-Lc-1v3"/>
                             <constraint firstItem="cFx-AE-8uu" firstAttribute="trailing" secondItem="g5R-jM-Ppt" secondAttribute="trailing" id="nll-dd-F4T"/>
                         </constraints>
@@ -229,6 +250,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="myLibrarySearchBar" destination="CE6-tr-PSj" id="P1P-3Y-cCz"/>
                         <outlet property="myLibraryTableView" destination="g5R-jM-Ppt" id="wHc-7B-PyM"/>
                     </connections>
                 </viewController>

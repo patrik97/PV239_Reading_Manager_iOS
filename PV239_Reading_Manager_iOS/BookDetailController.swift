@@ -17,6 +17,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
     let tableView = UITableView();
     let bookStates = ["Unread", "Reading", "Readed"]
     @IBOutlet weak var bookStateLabel: UILabel!
+    weak var setVisibleBooksDelegate: SetVisibleBooksDelegate?
     
     @IBAction func addToLibrary(_ sender: UIButton) {
         if (type == "library") {
@@ -24,6 +25,7 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         } else {
             LocalStorageManager.shared.moveBookToLibrary(book: self.book!, completion: {() -> () in
                 self.navigationController?.popViewController(animated: true)
+                setVisibleBooksDelegate?.setVisibleBooks(searchText: "")
             })
         }
     }

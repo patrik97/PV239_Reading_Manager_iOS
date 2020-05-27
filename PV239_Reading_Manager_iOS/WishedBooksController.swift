@@ -8,8 +8,14 @@
 
 import UIKit
 
-class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDelegate {
+protocol SetVisibleBooksDelegate: class {
+    func setVisibleBooks(searchText: String)
+}
+
+class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDelegate, SetVisibleBooksDelegate {
     var wishedBooks: [Book] = []
+    var visibleBooks: [Book] = []
+    @IBOutlet weak var wishlistSearchBar: UISearchBar!
     @IBOutlet weak var wishlistTableView: UITableView!
     
     @IBAction func editPressed(_ sender: UIButton) {
@@ -25,12 +31,15 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         LocalStorageManager.shared.loadWishedBooks(completion: {(books: [Book]) -> () in wishedBooks = books})
+        visibleBooks = wishedBooks
+        wishlistSearchBar.delegate = self
         wishlistTableView.delegate = self
         wishlistTableView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         LocalStorageManager.shared.loadWishedBooks(completion: {(books: [Book]) -> () in wishedBooks = books})
+        setVisibleBooks(searchText: wishlistSearchBar.text ?? "")
         wishlistTableView.reloadData()
         super.viewDidAppear(animated);
     }
@@ -50,8 +59,17 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
     func addBook(book: Book) {
         book.state = BookState.notOwned
         wishedBooks.append(book)
+        setVisibleBooks(searchText: wishlistSearchBar.text ?? "")
         wishlistTableView.reloadData()
         LocalStorageManager.shared.saveWishedBooks(books: wishedBooks, completion: {() -> () in return})
+    }
+    
+    func setVisibleBooks(searchText: String) {
+        if (searchText == "") {
+            visibleBooks = wishedBooks
+        } else {
+            visibleBooks = wishedBooks.filter{$0.author.contains(searchText) || $0.title.contains(searchText)}
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,7 +79,7 @@ class WishedBooksController: UIViewController, AddBookDelegate, UITableViewDeleg
 
 extension WishedBooksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wishedBooks.count
+        return visibleBooks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +89,7 @@ extension WishedBooksController: UITableViewDataSource {
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         
-        let book = wishedBooks[indexPath.row]
+        let book = visibleBooks[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
         
@@ -91,15 +109,19 @@ extension WishedBooksController: UITableViewDataSource {
    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
         let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
-            self.wishedBooks.remove(at: indexPath.row)
+            let itemToDelete = self.visibleBooks[indexPath.row]
+            self.visibleBooks.remove(at: indexPath.row)
+            self.wishedBooks.removeAll(where: {$0.id == itemToDelete.id})
             tableView.deleteRows(at: [indexPath], with: .fade)
             LocalStorageManager.shared.saveWishedBooks(books: self.wishedBooks, completion: {() -> () in return})
         }
         delete.backgroundColor = UIColor.red
 
         let complete = UITableViewRowAction(style: .default, title: "Move to Library") { (action, indexPath) in
-            LocalStorageManager.shared.moveBookToLibrary(book: self.wishedBooks[indexPath.row], completion: {() -> () in
-                    self.wishedBooks.remove(at: indexPath.row)
+            LocalStorageManager.shared.moveBookToLibrary(book: self.visibleBooks[indexPath.row], completion: {() -> () in
+                    let itemToDelete = self.visibleBooks[indexPath.row]
+                    self.visibleBooks.remove(at: indexPath.row)
+                    self.wishedBooks.removeAll(where: {$0.id == itemToDelete.id})
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 })
         }
@@ -113,9 +135,17 @@ extension WishedBooksController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = wishedBooks[sourceIndexPath.row]
-        wishedBooks.remove(at: sourceIndexPath.row)
-        wishedBooks.insert(itemToMove, at: destinationIndexPath.row)
+        let itemToMove = visibleBooks[sourceIndexPath.row]
+        visibleBooks.remove(at: sourceIndexPath.row)
+        visibleBooks.insert(itemToMove, at: destinationIndexPath.row)
         LocalStorageManager.shared.saveWishedBooks(books: wishedBooks, completion: {() -> () in return})
     }
 }
+
+extension WishedBooksController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        setVisibleBooks(searchText: searchText)
+        wishlistTableView.reloadData()
+    }
+}
+

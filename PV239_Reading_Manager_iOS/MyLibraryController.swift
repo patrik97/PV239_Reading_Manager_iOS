@@ -10,6 +10,8 @@ import UIKit
 
 class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegate {
     var myBooks: [Book] = []
+    var visibleBooks: [Book] = []
+    @IBOutlet weak var myLibrarySearchBar: UISearchBar!
     @IBOutlet weak var myLibraryTableView: UITableView!
     
 //    @IBAction func editClicked(_ sender: UIButton) {
@@ -28,14 +30,18 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
     
     override func viewDidLoad() {
         LocalStorageManager.shared.loadLibraryBooks(completion: {(books: [Book]) -> () in myBooks = books})
+        visibleBooks = myBooks
+        myLibrarySearchBar.text = ""
         myLibraryTableView.delegate = self
         myLibraryTableView.dataSource = self
+        myLibrarySearchBar.delegate = self
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         LocalStorageManager.shared.getLibraryBooks(completion: {(books: [Book]) -> () in myBooks = books})
         print(myBooks)
+        setVisibleBooks(searchText: myLibrarySearchBar.text ?? "")
         myLibraryTableView.reloadData()
         super.viewDidAppear(animated)
     }
@@ -55,14 +61,23 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
     func addBook(book: Book) {
         book.state = BookState.unread
         myBooks.append(book)
+        setVisibleBooks(searchText: myLibrarySearchBar.text ?? "")
         myLibraryTableView.reloadData()
         LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
+    }
+    
+    private func setVisibleBooks(searchText: String) {
+        if (searchText == "") {
+            visibleBooks = myBooks
+        } else {
+            visibleBooks = myBooks.filter{$0.author.contains(searchText) || $0.title.contains(searchText)}
+        }
     }
 }
     
 extension MyLibraryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myBooks.count
+        return visibleBooks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +87,7 @@ extension MyLibraryController: UITableViewDataSource {
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         
-        let book = myBooks[indexPath.row]
+        let book = visibleBooks[indexPath.row]
         cell.textLabel?.text = book.title
         cell.detailTextLabel?.text = book.author
         
@@ -89,8 +104,10 @@ extension MyLibraryController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            myBooks.remove(at: indexPath.row)
+            let itemToDelete = visibleBooks[indexPath.row]
+            visibleBooks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            myBooks.removeAll(where: {$0.id == itemToDelete.id})
             LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
         }
     }
@@ -100,9 +117,16 @@ extension MyLibraryController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = myBooks[sourceIndexPath.row]
-        myBooks.remove(at: sourceIndexPath.row)
-        myBooks.insert(itemToMove, at: destinationIndexPath.row)
+        let itemToMove = visibleBooks[sourceIndexPath.row]
+        visibleBooks.remove(at: sourceIndexPath.row)
+        visibleBooks.insert(itemToMove, at: destinationIndexPath.row)
         LocalStorageManager.shared.saveLibraryBooks(books: myBooks, completion: {() -> () in return})
+    }
+}
+
+extension MyLibraryController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        setVisibleBooks(searchText: searchText)
+        myLibraryTableView.reloadData()
     }
 }
