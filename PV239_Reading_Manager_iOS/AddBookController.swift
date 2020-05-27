@@ -47,12 +47,14 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
                     
                     let parser = XMLParser(data: data)
                         parser.delegate = self
+                        self.books = []
                         if parser.parse() {
                             print(self.books)
                             self.booksTable.reloadData()
                         }
             }
         } else {
+            books = []
             self.booksTable.reloadData()
         }
     }
@@ -104,17 +106,15 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
 extension AddBookController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchText)
-        perform(#selector(self.reload(_:)), with: searchText, afterDelay: 3)
+        perform(#selector(self.reload(_:)), with: searchText, afterDelay: 0.5)
     }
 
     func
         searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        books = []
         fetchBooks(query: searchBar.text ?? "")
     }
     
     @objc func reload(_ searchText: String) {
-        books = []
         fetchBooks(query: searchText)
     }
 }
