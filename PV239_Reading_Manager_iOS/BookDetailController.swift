@@ -126,7 +126,8 @@ class BookDetailController: UIViewController, UICollectionViewDataSource, UIColl
         cell.noteLabel.text = book?.notes[indexPath.row].note
         let formatter = DateFormatter()
         formatter.dateFormat = "dd. MM. yy"
-        formatter.string(from: book?.notes[indexPath.row].added ?? Date())
+        let date = formatter.string(from: book?.notes[indexPath.row].added ?? Date())
+        cell.dateLabel.text = date
         cell.backgroundColor = lightGray
         cell.isSelectedNow = false
         return cell
