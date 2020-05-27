@@ -33,7 +33,7 @@ class StatisticsController: UIViewController, ChartViewDelegate {
         var entries = [PieChartDataEntry]()
         
         LocalStorageManager.shared.loadAllBooks(completion: { (libBooks, wishBooks) in
-            var allBooks = libBooks + wishBooks
+            let allBooks = libBooks + wishBooks
             
             let notOwnedBooks = allBooks.filter{ $0.state == BookState.notOwned }
             let readedBooks = allBooks.filter{ $0.state == BookState.readed }
