@@ -1,0 +1,6 @@
+framework module Pods_PV239_Reading_Manager_iOS {
+  umbrella header "Pods-PV239_Reading_Manager_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
