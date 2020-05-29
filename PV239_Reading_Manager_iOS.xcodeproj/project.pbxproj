@@ -28,30 +28,12 @@
 		B897F9BC24390A3F000B483C /* BookNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F9BB24390A3F000B483C /* BookNote.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8081AE5F24766E1500F7790E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8081AE5A24766E1500F7790E /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
-			remoteInfo = Charts;
-		};
-		8081AE6124766E1500F7790E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8081AE5A24766E1500F7790E /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
-			remoteInfo = ChartsTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		31A541B98E79254A2E6CE038 /* Pods-PV239_Reading_Manager_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PV239_Reading_Manager_iOS.debug.xcconfig"; path = "Target Support Files/Pods-PV239_Reading_Manager_iOS/Pods-PV239_Reading_Manager_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8037BF6E2474219B004DA69A /* LocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
 		8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerProtocol.swift; sourceTree = "<group>"; };
 		8049D33E2451F691009CC6C2 /* BookRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRequest.swift; sourceTree = "<group>"; };
 		8049D3402452248D009CC6C2 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
-		8081AE5A24766E1500F7790E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		8081AE6924766F8200F7790E /* StatisticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsController.swift; sourceTree = "<group>"; };
 		B857B875247014520091F3B8 /* AddNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteController.swift; sourceTree = "<group>"; };
 		B897F9922438B4AB000B483C /* PV239_Reading_Manager_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PV239_Reading_Manager_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,15 +74,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		8081AE5B24766E1500F7790E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8081AE6024766E1500F7790E /* Charts.framework */,
-				8081AE6224766E1500F7790E /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B897F9892438B4AB000B483C = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +112,6 @@
 				B857B875247014520091F3B8 /* AddNoteController.swift */,
 				8037BF6E2474219B004DA69A /* LocalStorageManager.swift */,
 				8037BF70247421CC004DA69A /* StorageManagerProtocol.swift */,
-				8081AE5A24766E1500F7790E /* Charts.xcodeproj */,
 				8081AE6924766F8200F7790E /* StatisticsController.swift */,
 			);
 			path = PV239_Reading_Manager_iOS;
@@ -199,35 +171,12 @@
 			);
 			productRefGroup = B897F9932438B4AB000B483C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8081AE5B24766E1500F7790E /* Products */;
-					ProjectRef = 8081AE5A24766E1500F7790E /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B897F9912438B4AB000B483C /* PV239_Reading_Manager_iOS */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		8081AE6024766E1500F7790E /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = 8081AE5F24766E1500F7790E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8081AE6224766E1500F7790E /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = 8081AE6124766E1500F7790E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B897F9902438B4AB000B483C /* Resources */ = {
