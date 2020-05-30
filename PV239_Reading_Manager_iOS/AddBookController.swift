@@ -49,7 +49,7 @@ class AddBookController: UIViewController, UITableViewDelegate, UITableViewDataS
                         parser.delegate = self
                         self.books = []
                         if parser.parse() {
-                            print(self.books)
+                            //print(self.books)
                             self.booksTable.reloadData()
                         }
             }

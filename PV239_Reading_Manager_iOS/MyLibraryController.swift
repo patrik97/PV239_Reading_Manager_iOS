@@ -40,7 +40,7 @@ class MyLibraryController: UIViewController, AddBookDelegate, UITableViewDelegat
     
     override func viewDidAppear(_ animated: Bool) {
         LocalStorageManager.shared.getLibraryBooks(completion: {(books: [Book]) -> () in myBooks = books})
-        print(myBooks)
+        //print(myBooks)
         setVisibleBooks(searchText: myLibrarySearchBar.text ?? "")
         myLibraryTableView.reloadData()
         super.viewDidAppear(animated)

@@ -40,16 +40,19 @@ class StatisticsController: UIViewController, ChartViewDelegate {
             let readingBooks = allBooks.filter{ $0.state == BookState.reading }
             let unreadBooks = allBooks.filter{ $0.state == BookState.unread }
             
-            entries = appendList(books: notOwnedBooks, label: "Wished Books", entries: entries)
-            entries = appendList(books: readedBooks, label: "Already read Books", entries: entries)
-            entries = appendList(books: unreadBooks, label: "Unreaded Books", entries: entries)
-            entries = appendList(books: readingBooks, label: "Currently reading Books", entries: entries)
+            entries = appendList(books: notOwnedBooks, label: "Wished", entries: entries)
+            entries = appendList(books: readedBooks, label: "Already read", entries: entries)
+            entries = appendList(books: unreadBooks, label: "Unreaded", entries: entries)
+            entries = appendList(books: readingBooks, label: "Currently reading", entries: entries)
             
             let set = PieChartDataSet(entries: entries)
             set.colors = ChartColorTemplates.joyful()
+            set.valueTextColor = UIColor.black
             
             let data = PieChartData(dataSet: set)
             pieChart.data = data
+            
+            pieChart.entryLabelColor = NSUIColor.black
         })
     }
     

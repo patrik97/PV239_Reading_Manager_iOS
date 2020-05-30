@@ -21,7 +21,7 @@ class LocalStorageManager: StorageManagerProtocol {
     private init() { }
     
     func getLibraryBooks(completion: ([Book]) -> ()) {
-        print(libraryBooks)
+        //print(libraryBooks)
         completion(libraryBooks)
     }
     
@@ -101,7 +101,7 @@ class LocalStorageManager: StorageManagerProtocol {
     func updateLibraryBook(book: Book, completion: () -> ()) {
         if let index = libraryBooks.firstIndex(of: book) {
             libraryBooks[index] = book;
-            print(libraryBooks[index].notes)
+            //print(libraryBooks[index].notes)
             saveLibraryBooks(books: libraryBooks, completion: {() -> () in return})
             completion()
         } else {
